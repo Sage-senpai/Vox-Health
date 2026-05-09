@@ -1,0 +1,25 @@
+# Environment variables
+.env*.local
+
+# Dependencies & build output
+node_modules
+.next/
+.snowflake/
+
+# OS files
+.DS_Store
+
+# Editor / tooling
+.claude/
+.vscode/
+.idea/
+
+# Internal scaffolding & design notes (kept locally, not versioned)
+ACCESSIBILITY_CHECKLIST.md
+BUILD_SUMMARY.md
+DESIGN_EVOLUTION.md
+ELDRITCH_REDESIGN.md
+IMPLEMENTATION_SUMMARY.md
+LANDING_PAGE_BUILD.md
+PREMIUM_REDESIGN.md
+PROJECT_STRUCTURE.txt
