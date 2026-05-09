@@ -79,7 +79,7 @@ export interface WalletContextType {
   isConnected: boolean;
   isLoading: boolean;
   connect: () => Promise<void>;
-  disconnect: () => void;
+  disconnect: () => void | Promise<void>;
 }
 
 // Recording State

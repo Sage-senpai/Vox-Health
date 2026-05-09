@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Wallet, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useWallet } from '@/context/wallet-context';
+import { useHealthAgent } from '@/hooks/use-health-agent';
 
 interface WalletSetupStepProps {
   onNext: () => void;
@@ -11,12 +12,31 @@ interface WalletSetupStepProps {
 }
 
 export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
-  const { connect, isConnected, isLoading } = useWallet();
+  const { connect, isConnected, isLoading, publicKey, hasLiveSigner, environment } = useWallet();
+  const { agent } = useHealthAgent({ patientPubkey: publicKey ?? undefined });
   const [hasAttempted, setHasAttempted] = useState(false);
+  const [initStatus, setInitStatus] = useState<'idle' | 'pending' | 'done' | 'error'>('idle');
+  const [initDetail, setInitDetail] = useState<string>('');
 
   const handleConnect = async () => {
     setHasAttempted(true);
     await connect();
+    // Once connected, ask the agent to create the on-chain Patient PDA. This
+    // is idempotent — if the PDA already exists the tool short-circuits.
+    if (publicKey) {
+      setInitStatus('pending');
+      try {
+        const result = await agent.call<{ txSignature: string; patientPda: string; source: string }>(
+          'solana.initializePatient',
+          { ledgerPubkey: publicKey },
+        );
+        setInitDetail(`${result.source} · ${result.patientPda.slice(0, 8)}…${result.patientPda.slice(-4)}`);
+        setInitStatus('done');
+      } catch (err) {
+        setInitDetail(err instanceof Error ? err.message : String(err));
+        setInitStatus('error');
+      }
+    }
   };
 
   return (
@@ -105,21 +125,27 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
             ) : (
               <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
             )}
-            <div>
-              <p
-                className={`font-semibold ${
-                  isConnected ? 'text-accent' : 'text-destructive'
-                }`}
-              >
-                {isConnected
-                  ? 'Wallet Connected Successfully!'
-                  : 'Wallet Connection Failed'}
+            <div className="space-y-2">
+              <p className={`font-semibold ${isConnected ? 'text-accent' : 'text-destructive'}`}>
+                {isConnected ? 'Wallet Connected Successfully' : 'Wallet Connection Failed'}
               </p>
-              <p className="text-sm text-secondary mt-1">
-                {isConnected
-                  ? 'Your wallet is now connected and secured.'
-                  : 'Make sure you have a Solana wallet installed and try again.'}
-              </p>
+              {isConnected && (
+                <ul className="text-xs text-secondary space-y-1 font-mono">
+                  <li>environment · {environment}</li>
+                  <li>signer · {hasLiveSigner ? 'live' : 'mock'}</li>
+                  {publicKey && <li>pubkey · {publicKey.slice(0, 8)}…{publicKey.slice(-4)}</li>}
+                  {initStatus !== 'idle' && (
+                    <li>
+                      patient PDA · {initStatus === 'pending' ? 'initializing…' : initDetail || initStatus}
+                    </li>
+                  )}
+                </ul>
+              )}
+              {!isConnected && (
+                <p className="text-sm text-secondary">
+                  Install Phantom (desktop) or open VoxHealth in the Solana Mobile dApp Store browser.
+                </p>
+              )}
             </div>
           </div>
         </div>

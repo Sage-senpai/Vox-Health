@@ -206,12 +206,130 @@ export const revokeDoctorAccessTool: ToolDefinition<RevokeDoctorInput, RevokeDoc
   },
 };
 
-export const solanaTools = [sealEntryTool, grantDoctorAccessTool, revokeDoctorAccessTool];
+interface InitializePatientInput {
+  /** Pubkey held by the patient's Ledger. Set this to the wallet pubkey if
+   *  the patient hasn't paired a Ledger yet — they can rotate it later. */
+  ledgerPubkey: string;
+}
+interface InitializePatientOutput {
+  txSignature: string;
+  patientPda: string;
+  source: ToolStatus;
+}
+
+export const initializePatientTool: ToolDefinition<InitializePatientInput, InitializePatientOutput> = {
+  name: 'solana.initializePatient',
+  description: 'Create the patient PDA on Solana. Idempotent — returns the existing PDA if already initialized.',
+  parameters: {
+    ledgerPubkey: 'Base58 pubkey held by the patient hardware wallet.',
+  },
+  status: status(),
+  async invoke(input) {
+    const programId = getProgramId();
+    const signer = activeSigner;
+    if (!programId || !signer) {
+      return {
+        txSignature: mockSignature(input.ledgerPubkey),
+        patientPda: 'mock-patient-pda',
+        source: 'mock',
+      };
+    }
+
+    const conn = getConnection();
+    const owner = signer.publicKey;
+    const [patient] = patientPda(owner, programId);
+
+    // Idempotency: skip the tx if the PDA already exists.
+    const existing = await conn.getAccountInfo(patient);
+    if (existing) {
+      return {
+        txSignature: 'already-initialized',
+        patientPda: patient.toBase58(),
+        source: 'live',
+      };
+    }
+
+    const ledgerKey = new PublicKey(input.ledgerPubkey);
+    const data = Buffer.concat([DISC.initializePatient, ledgerKey.toBuffer()]);
+    const ix = new TransactionInstruction({
+      programId,
+      keys: [
+        { pubkey: owner, isWritable: true, isSigner: true },
+        { pubkey: patient, isWritable: true, isSigner: false },
+        { pubkey: SystemProgram.programId, isWritable: false, isSigner: false },
+      ],
+      data,
+    });
+
+    const tx = new Transaction().add(ix);
+    tx.feePayer = owner;
+    tx.recentBlockhash = (await conn.getLatestBlockhash()).blockhash;
+    const signed = await signer.signTransaction(tx);
+    const txSignature = await conn.sendRawTransaction(signed.serialize());
+    await conn.confirmTransaction(txSignature, 'confirmed');
+
+    return { txSignature, patientPda: patient.toBase58(), source: 'live' };
+  },
+};
+
+interface VerifyGrantInput {
+  patientPubkey: string;
+  doctorPubkey: string;
+}
+interface VerifyGrantOutput {
+  valid: boolean;
+  expiresAt?: number;
+  accessLevel?: 0 | 1 | 2;
+  source: ToolStatus;
+}
+
+export const verifyDoctorGrantTool: ToolDefinition<VerifyGrantInput, VerifyGrantOutput> = {
+  name: 'solana.verifyDoctorGrant',
+  description: 'Read the (patient, doctor) grant PDA and confirm it exists + has not expired.',
+  parameters: {
+    patientPubkey: 'Base58 patient wallet pubkey (the on-chain identity, not the PDA).',
+    doctorPubkey: 'Base58 doctor wallet pubkey.',
+  },
+  status: status(),
+  async invoke(input) {
+    const programId = getProgramId();
+    if (!programId) {
+      // Mock: pretend grants are valid for the demo so the doctor portal renders.
+      return { valid: true, expiresAt: Math.floor(Date.now() / 1000) + 86400, accessLevel: 0, source: 'mock' };
+    }
+    const conn = getConnection();
+    try {
+      const patient = new PublicKey(input.patientPubkey);
+      const doctor = new PublicKey(input.doctorPubkey);
+      const [grant] = grantPda(patient, doctor, programId);
+      const acct = await conn.getAccountInfo(grant);
+      if (!acct) return { valid: false, source: 'live' };
+
+      // Layout: 8 disc + 32 patient + 32 doctor + 8 granted_at + 8 expires_at + 1 access_level
+      const expiresAt = Number(acct.data.readBigInt64LE(8 + 32 + 32 + 8));
+      const accessLevel = acct.data.readUInt8(8 + 32 + 32 + 8 + 8) as 0 | 1 | 2;
+      const now = Math.floor(Date.now() / 1000);
+      return { valid: expiresAt > now, expiresAt, accessLevel, source: 'live' };
+    } catch (err) {
+      console.warn('[VoxHealth] verifyDoctorGrant failed:', err);
+      return { valid: false, source: 'mock' };
+    }
+  },
+};
+
+export const solanaTools = [
+  initializePatientTool,
+  sealEntryTool,
+  grantDoctorAccessTool,
+  revokeDoctorAccessTool,
+  verifyDoctorGrantTool,
+];
 
 // ─── Instruction builders ─────────────────────────────────────────────
 
 /** Anchor instruction discriminators are `sha256("global:<name>")[0..8]`. */
 const DISC = {
+  initializePatient: Buffer.from([0, 0, 0, 0, 0, 0, 0, 1]),
   sealEntry: Buffer.from([0, 0, 0, 0, 0, 0, 0, 2]),
   grantDoctor: Buffer.from([0, 0, 0, 0, 0, 0, 0, 3]),
 };

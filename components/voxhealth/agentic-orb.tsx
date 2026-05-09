@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useHealthAgent } from '@/hooks/use-health-agent';
 import { useVoiceRecorder } from '@/hooks/use-voice-recorder';
 import type { AgentEvent } from '@/lib/agent/types';
+import { buildEntryEnvelope, uploadEntry } from '@/lib/storage';
 
 /**
  * AgenticOrb — the patient-facing voice button, but every interaction goes
@@ -60,15 +61,29 @@ export function AgenticOrb({ patientPubkey }: { patientPubkey?: string }) {
       // Stage 2 — analyze.
       await agent.call('noah.analyze', { transcript: transcribe.transcript });
 
-      // Stage 3 — seal on Ledger.
-      const envelope = `${transcribe.transcript.slice(0, 32)}|${patientPubkey ?? 'patient'}|${Date.now()}`;
-      const seal = await agent.call<{ sigBase58: string }>('ledger.seal', { envelope });
+      // Stage 3 — upload encrypted envelope to storage (Arweave-shaped CID).
+      const recordedAt = Math.floor(Date.now() / 1000);
+      const severity = lastSeverity(events) ?? 2;
+      const envelopeJson = buildEntryEnvelope({
+        patientPubkey: patientPubkey ?? 'unattributed',
+        transcript: transcribe.transcript,
+        audioBase64,
+        severity,
+        recordedAt,
+      });
+      const upload = await uploadEntry({ data: envelopeJson });
 
-      // Stage 4 — settle on Solana (mock CID until storage layer lands).
+      // Stage 4 — seal the (cid || patient || recordedAt) digest on Ledger.
+      const seal = await agent.call<{ sigBase58: string }>('ledger.seal', {
+        envelope: `${upload.cid}|${patientPubkey ?? 'unattributed'}|${recordedAt}`,
+      });
+
+      // Stage 5 — settle on Solana with the real CID + signature.
       await agent.call('solana.sealEntry', {
-        cid: `cid-${Date.now().toString(36)}`,
+        cid: upload.cid,
         sigBase58: seal.sigBase58,
-        severity: lastSeverity(events) ?? 2,
+        severity,
+        recordedAt,
       });
 
       // Stage 5 — escalate to caregiver if NoahAI flagged severity ≥ 4.
