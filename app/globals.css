@@ -1,0 +1,209 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* PAPER (LIGHT) - Default Theme */
+:root {
+  /* Surfaces */
+  --paper: #FAF7F2;
+  --linen: #F2EEE6;
+  --vellum: #E8E2D5;
+  --rule: #DDD6C7;
+
+  /* Ink */
+  --ink: #0E1116;
+  --ink-muted: #44474C;
+  --ink-subtle: #6E7176;
+
+  /* Accents */
+  --sage: #2E7E6F;
+  --sage-soft: #C8E0D8;
+  --coral: #D9573F;
+  --coral-soft: #F6D9D2;
+  --amber: #C28A2A;
+  --amber-soft-light: #F2E3C6;
+  --indigo: #2D3F8F;
+
+  /* Semantic mappings */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--linen);
+  --card-foreground: var(--ink);
+  --muted: var(--ink-muted);
+  --muted-foreground: var(--ink-subtle);
+  --border: var(--rule);
+  --input: var(--linen);
+  --primary: var(--sage);
+  --primary-foreground: white;
+  --secondary: var(--ink-muted);
+  --accent: var(--sage);
+  --destructive: var(--coral);
+  --ring: var(--sage);
+
+  /* Radius */
+  --radius: 0.875rem;
+}
+
+/* INK (DARK) Theme */
+.dark {
+  /* Surfaces */
+  --paper: #0B0E12;
+  --linen: #14181E;
+  --vellum: #1C2128;
+  --rule: #2A2F37;
+
+  /* Ink */
+  --ink: #F2EEE6;
+  --ink-muted: #B5B0A6;
+  --ink-subtle: #7B7973;
+
+  /* Accents (same hex in both themes) */
+  --sage: #2E7E6F;
+  --sage-soft: #C8E0D8;
+  --coral: #D9573F;
+  --coral-soft: #F6D9D2;
+  --amber: #C28A2A;
+  --amber-soft-dark: #3A2E18;
+  --indigo: #2D3F8F;
+
+  /* Semantic mappings */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--linen);
+  --card-foreground: var(--ink);
+  --muted: var(--ink-muted);
+  --muted-foreground: var(--ink-subtle);
+  --border: var(--rule);
+  --input: var(--linen);
+  --primary: var(--sage);
+  --primary-foreground: white;
+  --secondary: var(--ink-muted);
+  --accent: var(--sage);
+  --destructive: var(--coral);
+  --ring: var(--sage);
+}
+
+
+
+/* Typography Scale - mobile-first */
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 17px; /* 17px on mobile per spec */
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      font-size: 16px; /* 16px on desktop */
+    }
+  }
+
+  /* Display-XL: 3.5rem / 1.05 / -0.02em (hero only) */
+  .display-xl {
+    font-size: 3.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-family: var(--font-serif);
+    font-weight: 600;
+  }
+
+  /* Display-L: 2.5rem / 1.08 / -0.015em */
+  .display-l {
+    font-size: 2.5rem;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    font-family: var(--font-serif);
+    font-weight: 600;
+  }
+
+  /* Display-M: 2rem / 1.12 / -0.01em (page titles) */
+  .display-m {
+    font-size: 2rem;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    font-family: var(--font-serif);
+    font-weight: 600;
+  }
+
+  /* Title: 1.5rem / 1.2 / -0.005em (card headlines) */
+  .title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    font-family: var(--font-serif);
+    font-weight: 600;
+  }
+
+  /* Subtitle: 1.125rem / 1.35 */
+  .subtitle {
+    font-size: 1.125rem;
+    line-height: 1.35;
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  /* Body-L: 1.125rem / 1.6 (default for elderly/patient flows) */
+  .body-l {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+
+  /* Body: 1rem / 1.6 (clinician flows) */
+  .body {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+
+  /* Caption: 0.875rem / 1.45 */
+  .caption {
+    font-size: 0.875rem;
+    line-height: 1.45;
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+
+  /* Micro: 0.75rem / 1.4 / +0.04em UPPERCASE (labels only) */
+  .micro {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  /* Mono: 0.875rem / 1.5 (data tokens) */
+  .mono {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  /* Vital: 4rem / 1 / -0.025em (big numbers) */
+  .vital {
+    font-size: 4rem;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Ensure minimum sizes */
+  p, span, div {
+    min-height: 1.4em;
+  }
+}
