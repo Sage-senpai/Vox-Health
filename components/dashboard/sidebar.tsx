@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Home, Calendar, Pill, Users, Settings, Mic, LogOut } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
 
@@ -15,7 +15,13 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
 
   return (
     <aside className="w-full md:w-64 bg-white border-r border-border flex flex-col">
@@ -66,7 +72,7 @@ export function Sidebar() {
         )}
 
         <button
-          onClick={logout}
+          onClick={handleLogout}
           className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-destructive hover:bg-destructive/10 transition-colors"
         >
           <LogOut className="w-5 h-5" />

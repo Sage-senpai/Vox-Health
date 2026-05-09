@@ -1,3 +1,5 @@
+import { CountUp } from './count-up';
+
 export function ProblemSection() {
   return (
     <section id="problem" className="relative z-10 py-16 sm:py-20 md:py-28 2xl:py-36">
@@ -18,10 +20,26 @@ export function ProblemSection() {
           </div>
 
           <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 2xl:gap-6">
-            <Stat headline="30%" body="of medical errors trace back to incomplete patient histories." accent="coral" />
-            <Stat headline="133M" body="adults in the US live with a chronic condition." accent="amber" />
-            <Stat headline="53M" body="family caregivers manage another person's medications." accent="indigo" />
-            <Stat headline="$100B" body="lost yearly to duplicate testing across hospital silos." accent="sage" />
+            <Stat
+              headline={<CountUp to={30} suffix="%" />}
+              body="of medical errors trace back to incomplete patient histories."
+              accent="coral"
+            />
+            <Stat
+              headline={<CountUp to={133} suffix="M" />}
+              body="adults in the US live with a chronic condition."
+              accent="amber"
+            />
+            <Stat
+              headline={<CountUp to={53} suffix="M" />}
+              body="family caregivers manage another person's medications."
+              accent="indigo"
+            />
+            <Stat
+              headline={<CountUp to={100} prefix="$" suffix="B" />}
+              body="lost yearly to duplicate testing across hospital silos."
+              accent="sage"
+            />
           </div>
         </div>
       </div>
@@ -34,7 +52,7 @@ function Stat({
   body,
   accent,
 }: {
-  headline: string;
+  headline: React.ReactNode;
   body: string;
   accent: 'coral' | 'amber' | 'indigo' | 'sage';
 }) {

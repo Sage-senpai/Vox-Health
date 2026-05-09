@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { IBM_Plex_Sans, Unbounded, Space_Mono, Newsreader } from 'next/font/google'
+import { Toaster } from 'sonner'
 import { AuthProvider } from '@/context/auth-context'
 import { WalletProvider } from '@/context/wallet-context'
 import './globals.css'
@@ -59,6 +60,7 @@ export default function RootLayout({
         <AuthProvider>
           <WalletProvider>{children}</WalletProvider>
         </AuthProvider>
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   )

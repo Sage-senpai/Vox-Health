@@ -1,8 +1,8 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Phone, Wallet } from 'lucide-react';
+import { Phone, Wallet, Twitter, Linkedin, MessageCircle } from 'lucide-react';
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,15 +27,15 @@ export function Navigation() {
               HIPAA Compliant
             </span>
             <div className="flex gap-3">
-              {['twitter', 'discord', 'linkedin'].map((social) => (
+              {(['twitter', 'discord', 'linkedin'] as const).map((social) => (
                 <button
                   key={social}
                   className="hover:opacity-80 transition-opacity"
                   aria-label={social}
                 >
-                  {social === 'twitter' && 'ð•'}
-                  {social === 'discord' && 'ðŸ’¬'}
-                  {social === 'linkedin' && 'ðŸ”—'}
+                  {social === 'twitter' && <Twitter className="w-4 h-4" />}
+                  {social === 'discord' && <MessageCircle className="w-4 h-4" />}
+                  {social === 'linkedin' && <Linkedin className="w-4 h-4" />}
                 </button>
               ))}
             </div>

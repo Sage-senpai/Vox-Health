@@ -72,7 +72,7 @@ export function SocialProof() {
             <p className="text-ink-muted">Active Patients</p>
           </div>
           <div>
-            <p className="text-3xl font-serif font-bold text-primary mb-2">4.9â˜…</p>
+            <p className="text-3xl font-serif font-bold text-primary mb-2">4.9★</p>
             <p className="text-ink-muted">Average Rating</p>
           </div>
           <div>

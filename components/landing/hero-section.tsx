@@ -46,9 +46,9 @@ export function HeroSection() {
           <p className="text-sm text-muted-foreground mb-3">Trusted by healthcare professionals</p>
           <div className="flex items-center justify-center gap-6 flex-wrap">
             <span className="text-xs text-muted-foreground">HIPAA Compliant</span>
-            <span className="text-xs text-muted-foreground">â€¢</span>
+            <span className="text-xs text-muted-foreground">•</span>
             <span className="text-xs text-muted-foreground">Web3 Secure</span>
-            <span className="text-xs text-muted-foreground">â€¢</span>
+            <span className="text-xs text-muted-foreground">•</span>
             <span className="text-xs text-muted-foreground">Privacy First</span>
           </div>
         </div>

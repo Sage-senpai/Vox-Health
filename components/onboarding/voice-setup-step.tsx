@@ -117,9 +117,9 @@ export function VoiceSetupStep({ onNext }: VoiceSetupStepProps) {
           <div className="text-sm">
             <p className="font-semibold text-foreground">Pro Tips</p>
             <ul className="text-ink-muted space-y-1 mt-2">
-              <li>â€¢ Speak clearly and at a normal volume</li>
-              <li>â€¢ Find a quiet space for best results</li>
-              <li>â€¢ You can always re-record your entries</li>
+              <li>• Speak clearly and at a normal volume</li>
+              <li>• Find a quiet space for best results</li>
+              <li>• You can always re-record your entries</li>
             </ul>
           </div>
         </div>

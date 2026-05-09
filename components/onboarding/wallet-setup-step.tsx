@@ -22,7 +22,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
     setHasAttempted(true);
     await connect();
     // Once connected, ask the agent to create the on-chain Patient PDA. This
-    // is idempotent â€” if the PDA already exists the tool short-circuits.
+    // is idempotent — if the PDA already exists the tool short-circuits.
     if (publicKey) {
       setInitStatus('pending');
       try {
@@ -30,7 +30,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
           'solana.initializePatient',
           { ledgerPubkey: publicKey },
         );
-        setInitDetail(`${result.source} Â· ${result.patientPda.slice(0, 8)}â€¦${result.patientPda.slice(-4)}`);
+        setInitDetail(`${result.source} · ${result.patientPda.slice(0, 8)}…${result.patientPda.slice(-4)}`);
         setInitStatus('done');
       } catch (err) {
         setInitDetail(err instanceof Error ? err.message : String(err));
@@ -131,12 +131,12 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
               </p>
               {isConnected && (
                 <ul className="text-xs text-ink-muted space-y-1 font-mono">
-                  <li>environment Â· {environment}</li>
-                  <li>signer Â· {hasLiveSigner ? 'live' : 'mock'}</li>
-                  {publicKey && <li>pubkey Â· {publicKey.slice(0, 8)}â€¦{publicKey.slice(-4)}</li>}
+                  <li>environment · {environment}</li>
+                  <li>signer · {hasLiveSigner ? 'live' : 'mock'}</li>
+                  {publicKey && <li>pubkey · {publicKey.slice(0, 8)}…{publicKey.slice(-4)}</li>}
                   {initStatus !== 'idle' && (
                     <li>
-                      patient PDA Â· {initStatus === 'pending' ? 'initializingâ€¦' : initDetail || initStatus}
+                      patient PDA · {initStatus === 'pending' ? 'initializing…' : initDetail || initStatus}
                     </li>
                   )}
                 </ul>

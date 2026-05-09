@@ -1,13 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { QRCodeSVG } from 'qrcode.react';
+import { useWallet } from '@/context/wallet-context';
 
 export function QRShare() {
+  const { publicKey, isConnected, connect } = useWallet();
   const [timeRemaining, setTimeRemaining] = useState(30 * 60); // 30 minutes in seconds
   const doctorName = 'Dr. Sarah Chen';
 
+  useEffect(() => {
+    if (timeRemaining <= 0) return;
+    const id = setInterval(() => setTimeRemaining((s) => Math.max(0, s - 1)), 1000);
+    return () => clearInterval(id);
+  }, [timeRemaining]);
+
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
+
+  const grantUrl = useMemo(() => {
+    if (!publicKey) return '';
+    const origin =
+      typeof window !== 'undefined' ? window.location.origin : 'https://vox-health.vercel.app';
+    return `${origin}/doctor?patient=${encodeURIComponent(publicKey)}`;
+  }, [publicKey]);
 
   return (
     <div className="min-h-screen bg-paper">
@@ -32,11 +48,38 @@ export function QRShare() {
         {/* QR Code Share Panel - dignified, not a wallet popover */}
         <div className="max-w-sm mx-auto mb-12">
           <div className="border-4 border-linen rounded-lg p-6 bg-white">
-            {/* QR Code placeholder - 360px square max per spec */}
-            <div className="w-full aspect-square bg-vellum rounded flex items-center justify-center text-sm text-ink-subtle">
-              QR Code
+            <div className="w-full aspect-square rounded flex items-center justify-center bg-white">
+              {isConnected && grantUrl ? (
+                <QRCodeSVG
+                  value={grantUrl}
+                  size={320}
+                  level="M"
+                  marginSize={0}
+                  bgColor="#ffffff"
+                  fgColor="#0B0E12"
+                  className="w-full h-full"
+                />
+              ) : (
+                <div className="text-center px-6">
+                  <p className="text-sm text-ink-muted mb-4">
+                    Connect your wallet to generate a sharing QR.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={connect}
+                    className="text-sm font-medium text-sage hover:underline"
+                  >
+                    Connect wallet
+                  </button>
+                </div>
+              )}
             </div>
           </div>
+          {isConnected && publicKey && (
+            <p className="mt-4 font-mono text-xs text-ink-subtle break-all text-center">
+              {publicKey}
+            </p>
+          )}
         </div>
 
         {/* Doctor details */}

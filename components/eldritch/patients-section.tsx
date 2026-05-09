@@ -1,8 +1,18 @@
+import { CountUp } from './count-up';
+
+type Cohort = {
+  tag: string;
+  headline: React.ReactNode;
+  label: string;
+  who: string;
+  story: string;
+};
+
 export function PatientsSection() {
-  const cohorts = [
+  const cohorts: Cohort[] = [
     {
       tag: 'Primary',
-      headline: '133M',
+      headline: <CountUp to={133} suffix="M" />,
       label: 'chronic-condition adults in the US',
       who: 'Margaret, 68. Diabetes + early arthritis.',
       story:
@@ -10,7 +20,7 @@ export function PatientsSection() {
     },
     {
       tag: 'Secondary',
-      headline: '53M',
+      headline: <CountUp to={53} suffix="M" />,
       label: 'family caregivers',
       who: 'James, 45. Manages his father&apos;s medication remotely.',
       story:

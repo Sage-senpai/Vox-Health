@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useHealthAgent } from '@/hooks/use-health-agent';
 import { useWallet } from '@/context/wallet-context';
@@ -30,6 +30,14 @@ export function DoctorPortal() {
   const [error, setError] = useState<string | null>(null);
   const [summary, setSummary] = useState<SpokenSummary | null>(null);
   const [synthesizing, setSynthesizing] = useState(false);
+
+  // Pre-fill from a scanned grant URL (?patient=...).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const patient = params.get('patient');
+    if (patient) setPatientInput(patient);
+  }, []);
 
   const verify = async () => {
     setError(null);

@@ -1,5 +1,7 @@
-﻿'use client';
+'use client';
 
+import { useState } from 'react';
+import { toast } from 'sonner';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { SeverityBadge } from './severity-badge';
@@ -24,10 +26,43 @@ export function TimelineCard({
   type,
   hasAudio = false,
 }: TimelineCardProps) {
+  const [noteOpen, setNoteOpen] = useState(false);
+  const [note, setNote] = useState('');
+
   const typeColors = {
     symptom: 'border-l-primary',
     medication: 'border-l-accent',
     note: 'border-l-secondary',
+  };
+
+  const onPlay = () => {
+    toast.message(`Playing ${title}`, {
+      description: 'Audio is encrypted off-chain (Arweave). Decryption requires your key.',
+    });
+  };
+
+  const onSaveNote = () => {
+    if (!note.trim()) {
+      toast.error('Note is empty');
+      return;
+    }
+    toast.success('Note added', { description: `"${note.slice(0, 60)}${note.length > 60 ? '…' : ''}"` });
+    setNote('');
+    setNoteOpen(false);
+  };
+
+  const onExport = () => {
+    const payload = JSON.stringify({ id, title, description, timestamp, severity, type }, null, 2);
+    const blob = new Blob([payload], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `voxhealth-entry-${id}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast.success('Entry exported');
   };
 
   return (
@@ -59,20 +94,46 @@ export function TimelineCard({
         {/* Actions */}
         <div className="flex gap-2 pt-2 border-t border-border">
           {hasAudio && (
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button onClick={onPlay} variant="outline" size="sm" className="gap-2">
               <Volume2 className="w-4 h-4" />
               <span>Play Recording</span>
             </Button>
           )}
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button
+            onClick={() => setNoteOpen((o) => !o)}
+            variant={noteOpen ? 'default' : 'outline'}
+            size="sm"
+            className="gap-2"
+          >
             <MessageCircle className="w-4 h-4" />
             <span>Add Note</span>
           </Button>
-          <Button variant="outline" size="sm" className="gap-2 ml-auto">
+          <Button onClick={onExport} variant="outline" size="sm" className="gap-2 ml-auto">
             <Download className="w-4 h-4" />
             <span className="hidden md:inline">Export</span>
           </Button>
         </div>
+
+        {/* Note editor */}
+        {noteOpen && (
+          <div className="space-y-2 pt-2">
+            <textarea
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="Add a private note to this entry…"
+              rows={3}
+              className="w-full px-3 py-2 border border-input rounded-md text-sm bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+            <div className="flex gap-2 justify-end">
+              <Button onClick={() => setNoteOpen(false)} variant="ghost" size="sm">
+                Cancel
+              </Button>
+              <Button onClick={onSaveNote} size="sm">
+                Save note
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </Card>
   );

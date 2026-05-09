@@ -1,8 +1,10 @@
-﻿'use client';
+'use client';
 
+import { useState } from 'react';
+import { toast } from 'sonner';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Clock, AlertCircle } from 'lucide-react';
+import { Clock, AlertCircle, Check, Pill } from 'lucide-react';
 
 const recentEntries = [
   {
@@ -22,11 +24,25 @@ const recentEntries = [
 ];
 
 const upcomingMeds = [
-  { name: 'Lisinopril', dosage: '10mg', time: '6:00 PM', icon: 'ðŸ’Š' },
-  { name: 'Metformin', dosage: '500mg', time: '8:00 PM', icon: 'ðŸ’Š' },
+  { id: 'lisinopril', name: 'Lisinopril', dosage: '10mg', time: '6:00 PM' },
+  { id: 'metformin', name: 'Metformin', dosage: '500mg', time: '8:00 PM' },
 ];
 
 export function TodayView() {
+  const [taken, setTaken] = useState<Record<string, boolean>>({});
+
+  const markTaken = (medId: string, medName: string) => {
+    setTaken((prev) => {
+      const next = { ...prev, [medId]: !prev[medId] };
+      if (next[medId]) {
+        toast.success(`${medName} marked as taken`);
+      } else {
+        toast.message(`${medName} unmarked`);
+      }
+      return next;
+    });
+  };
+
   return (
     <div className="space-y-6">
       {/* How Are You Feeling */}
@@ -80,23 +96,36 @@ export function TodayView() {
       {/* Upcoming Medications */}
       <div className="space-y-3">
         <h3 className="text-lg font-semibold text-foreground">Upcoming Medications</h3>
-        {upcomingMeds.map((med, i) => (
-          <Card key={i} className="p-4 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-2xl">{med.icon}</div>
-              <div>
-                <h4 className="font-semibold text-foreground">{med.name}</h4>
-                <p className="text-sm text-ink-muted">{med.dosage}</p>
+        {upcomingMeds.map((med) => {
+          const isTaken = !!taken[med.id];
+          return (
+            <Card key={med.id} className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Pill className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h4 className={`font-semibold ${isTaken ? 'text-ink-muted line-through' : 'text-foreground'}`}>
+                    {med.name}
+                  </h4>
+                  <p className="text-sm text-ink-muted">{med.dosage}</p>
+                </div>
               </div>
-            </div>
-            <div className="text-right">
-              <p className="font-semibold text-foreground">{med.time}</p>
-              <Button variant="outline" size="sm" className="mt-2">
-                Mark Taken
-              </Button>
-            </div>
-          </Card>
-        ))}
+              <div className="text-right">
+                <p className="font-semibold text-foreground">{med.time}</p>
+                <Button
+                  variant={isTaken ? 'default' : 'outline'}
+                  size="sm"
+                  className="mt-2 gap-1"
+                  onClick={() => markTaken(med.id, med.name)}
+                >
+                  {isTaken && <Check className="w-3 h-3" />}
+                  {isTaken ? 'Taken' : 'Mark Taken'}
+                </Button>
+              </div>
+            </Card>
+          );
+        })}
       </div>
 
       {/* Empty State Info */}

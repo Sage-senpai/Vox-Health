@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { DateRangePicker } from '@/components/timeline/date-range-picker';
 import { TimelineGraph } from '@/components/timeline/timeline-graph';
@@ -9,6 +10,25 @@ import { Download, Filter } from 'lucide-react';
 
 export default function TimelinePage() {
   const [timeframe, setTimeframe] = useState<'7d' | '30d' | 'all'>('7d');
+  const [showFilters, setShowFilters] = useState(false);
+
+  const onFilter = () => {
+    setShowFilters((s) => !s);
+  };
+
+  const onExport = () => {
+    const payload = JSON.stringify({ exportedAt: new Date().toISOString(), timeframe, entries }, null, 2);
+    const blob = new Blob([payload], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `voxhealth-timeline-${timeframe}-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast.success(`Exported ${entries.length} entries (${timeframe})`);
+  };
 
   const entries = [
     {
@@ -53,11 +73,11 @@ export default function TimelinePage() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button onClick={onFilter} variant={showFilters ? 'default' : 'outline'} className="gap-2">
             <Filter className="w-4 h-4" />
             <span>Filter</span>
           </Button>
-          <Button variant="outline" className="gap-2">
+          <Button onClick={onExport} variant="outline" className="gap-2">
             <Download className="w-4 h-4" />
             <span>Export</span>
           </Button>
@@ -69,6 +89,23 @@ export default function TimelinePage() {
 
       {/* Date Range Selector */}
       <DateRangePicker selected={timeframe} onSelect={setTimeframe} />
+
+      {showFilters && (
+        <div className="p-4 bg-background border border-border rounded-lg flex flex-wrap gap-2 text-sm">
+          <span className="text-ink-muted self-center mr-2">Type:</span>
+          {(['symptom', 'medication', 'note'] as const).map((t) => (
+            <span
+              key={t}
+              className="px-3 py-1 rounded-full border border-border text-ink-muted capitalize"
+            >
+              {t}
+            </span>
+          ))}
+          <span className="text-xs text-muted-foreground self-center ml-auto">
+            Filter UI is read-only in this preview build.
+          </span>
+        </div>
+      )}
 
       {/* Timeline Entries */}
       <div className="space-y-4">

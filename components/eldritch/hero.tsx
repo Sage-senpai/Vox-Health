@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CountUp } from './count-up';
 
 export function EldritchHero() {
   return (
@@ -63,10 +64,10 @@ export function EldritchHero() {
             </p>
 
             <div className="mt-5 grid grid-cols-2 gap-5">
-              <Stat k="Patients onboarded" v="1,317" />
-              <Stat k="Entries on-chain" v="84,902" />
-              <Stat k="Doctors verified" v="412" />
-              <Stat k="Avg. latency" v="1.2s" />
+              <Stat k="Patients onboarded" v={<CountUp to={1317} />} />
+              <Stat k="Entries on-chain" v={<CountUp to={84902} duration={2000} />} />
+              <Stat k="Doctors verified" v={<CountUp to={412} />} />
+              <Stat k="Avg. latency" v={<CountUp to={1.2} decimals={1} suffix="s" format={false} />} />
             </div>
 
             <div className="rune-rule my-6" />
@@ -103,7 +104,7 @@ export function EldritchHero() {
   );
 }
 
-function Stat({ k, v }: { k: string; v: string }) {
+function Stat({ k, v }: { k: string; v: React.ReactNode }) {
   return (
     <div>
       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-subtle">{k}</p>
