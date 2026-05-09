@@ -10,7 +10,7 @@
 import type { Idl } from '@coral-xyz/anchor';
 
 export const VOXHEALTH_IDL = {
-  address: 'VoxH1th11111111111111111111111111111111111',
+  address: 'ASyqDJB5mdko6iN6c4foLFfc7g8VAPLdBtdkPpaffgvU',
   metadata: {
     name: 'voxhealth',
     version: '0.1.0',

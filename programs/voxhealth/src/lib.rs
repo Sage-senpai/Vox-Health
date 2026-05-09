@@ -18,7 +18,7 @@
 
 use anchor_lang::prelude::*;
 
-declare_id!("VoxH1th11111111111111111111111111111111111");
+declare_id!("ASyqDJB5mdko6iN6c4foLFfc7g8VAPLdBtdkPpaffgvU");
 
 #[program]
 pub mod voxhealth {

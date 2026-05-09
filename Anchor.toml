@@ -6,10 +6,10 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-voxhealth = "VoxH1th11111111111111111111111111111111111"
+voxhealth = "ASyqDJB5mdko6iN6c4foLFfc7g8VAPLdBtdkPpaffgvU"
 
 [programs.devnet]
-voxhealth = "VoxH1th11111111111111111111111111111111111"
+voxhealth = "ASyqDJB5mdko6iN6c4foLFfc7g8VAPLdBtdkPpaffgvU"
 
 [registry]
 url = "https://api.apr.dev"

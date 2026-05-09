@@ -101,6 +101,12 @@ Four instructions:
 Each instruction emits a typed event so off-chain indexers can replay the
 patient timeline without scanning every account.
 
+### Live deployment
+
+| Cluster | Program ID                                                                                       |
+|---------|--------------------------------------------------------------------------------------------------|
+| Devnet  | [`ASyqDJB5mdko6iN6c4foLFfc7g8VAPLdBtdkPpaffgvU`](https://explorer.solana.com/address/ASyqDJB5mdko6iN6c4foLFfc7g8VAPLdBtdkPpaffgvU?cluster=devnet) |
+
 ### Build + deploy
 
 ```bash
