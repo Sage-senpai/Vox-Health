@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Star } from 'lucide-react';
 
@@ -32,7 +32,7 @@ export function SocialProof() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
             Loved by Patients & Doctors
           </h2>
-          <p className="text-lg text-secondary max-w-2xl mx-auto">
+          <p className="text-lg text-ink-muted max-w-2xl mx-auto">
             Hear from real users who&apos;ve transformed their health management.
           </p>
         </div>
@@ -59,7 +59,7 @@ export function SocialProof() {
               {/* Author */}
               <div>
                 <p className="font-semibold text-foreground">{testimonial.name}</p>
-                <p className="text-sm text-secondary">{testimonial.role}</p>
+                <p className="text-sm text-ink-muted">{testimonial.role}</p>
               </div>
             </div>
           ))}
@@ -69,15 +69,15 @@ export function SocialProof() {
         <div className="mt-16 grid grid-cols-3 gap-8 text-center">
           <div>
             <p className="text-3xl font-serif font-bold text-primary mb-2">10K+</p>
-            <p className="text-secondary">Active Patients</p>
+            <p className="text-ink-muted">Active Patients</p>
           </div>
           <div>
-            <p className="text-3xl font-serif font-bold text-primary mb-2">4.9★</p>
-            <p className="text-secondary">Average Rating</p>
+            <p className="text-3xl font-serif font-bold text-primary mb-2">4.9â˜…</p>
+            <p className="text-ink-muted">Average Rating</p>
           </div>
           <div>
             <p className="text-3xl font-serif font-bold text-primary mb-2">500+</p>
-            <p className="text-secondary">Partnered Doctors</p>
+            <p className="text-ink-muted">Partnered Doctors</p>
           </div>
         </div>
       </div>

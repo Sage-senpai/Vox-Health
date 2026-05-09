@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -36,7 +36,7 @@ export function MedicationCard({
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-foreground">{name}</h3>
-            <p className="text-sm text-secondary">{dosage}</p>
+            <p className="text-sm text-ink-muted">{dosage}</p>
           </div>
         </div>
         <div className="text-right flex-shrink-0">
@@ -47,7 +47,7 @@ export function MedicationCard({
 
       <div className="space-y-3 border-t border-border pt-3">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-secondary flex items-center gap-2">
+          <span className="text-ink-muted flex items-center gap-2">
             <Clock className="w-4 h-4" />
             {frequency}
           </span>

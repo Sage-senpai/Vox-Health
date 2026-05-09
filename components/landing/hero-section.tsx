@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -21,7 +21,7 @@ export function HeroSection() {
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground leading-tight">
             Your Voice, Your Health Story
           </h1>
-          <p className="text-xl text-secondary leading-relaxed">
+          <p className="text-xl text-ink-muted leading-relaxed">
             Track your symptoms, medications, and health journey with voice-first journaling. 
             Securely share your medical history with doctors using Web3 technology.
           </p>
@@ -46,9 +46,9 @@ export function HeroSection() {
           <p className="text-sm text-muted-foreground mb-3">Trusted by healthcare professionals</p>
           <div className="flex items-center justify-center gap-6 flex-wrap">
             <span className="text-xs text-muted-foreground">HIPAA Compliant</span>
-            <span className="text-xs text-muted-foreground">•</span>
+            <span className="text-xs text-muted-foreground">â€¢</span>
             <span className="text-xs text-muted-foreground">Web3 Secure</span>
-            <span className="text-xs text-muted-foreground">•</span>
+            <span className="text-xs text-muted-foreground">â€¢</span>
             <span className="text-xs text-muted-foreground">Privacy First</span>
           </div>
         </div>

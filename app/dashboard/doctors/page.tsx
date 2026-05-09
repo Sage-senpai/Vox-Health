@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+﻿import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Plus, Trash2, Eye, Copy } from 'lucide-react';
 
@@ -11,7 +11,7 @@ export default function DoctorsPage() {
           <h1 className="text-3xl font-serif font-bold text-foreground mb-1">
             Doctor Access
           </h1>
-          <p className="text-secondary">
+          <p className="text-ink-muted">
             Manage who can view your medical records
           </p>
         </div>
@@ -27,11 +27,11 @@ export default function DoctorsPage() {
           <h3 className="text-lg font-semibold text-foreground">Share via QR Code</h3>
           <div className="w-48 h-48 bg-white rounded-lg mx-auto flex items-center justify-center border-2 border-primary">
             <div className="text-center">
-              <p className="text-sm text-secondary">QR Code Generator</p>
+              <p className="text-sm text-ink-muted">QR Code Generator</p>
               <p className="text-xs text-muted-foreground">Coming soon</p>
             </div>
           </div>
-          <p className="text-sm text-secondary">
+          <p className="text-sm text-ink-muted">
             Doctors can scan this code to request access to your medical records
           </p>
           <Button variant="outline" className="w-full gap-2">
@@ -52,9 +52,9 @@ export default function DoctorsPage() {
             <div className="flex items-start justify-between">
               <div>
                 <h4 className="font-semibold text-foreground">{doctor.name}</h4>
-                <p className="text-sm text-secondary mb-2">{doctor.specialty}</p>
+                <p className="text-sm text-ink-muted mb-2">{doctor.specialty}</p>
                 <p className="text-xs text-muted-foreground">
-                  Access since {doctor.since} • Expires {doctor.expires}
+                  Access since {doctor.since} â€¢ Expires {doctor.expires}
                 </p>
               </div>
               <div className="flex gap-2">
@@ -75,7 +75,7 @@ export default function DoctorsPage() {
       {/* Empty State */}
       {false && (
         <Card className="p-8 text-center border-dashed border-border">
-          <p className="text-secondary mb-4">No doctors have access yet</p>
+          <p className="text-ink-muted mb-4">No doctors have access yet</p>
           <Button className="bg-primary hover:bg-primary/90 text-white gap-2">
             <Plus className="w-4 h-4" />
             <span>Share Your Records</span>

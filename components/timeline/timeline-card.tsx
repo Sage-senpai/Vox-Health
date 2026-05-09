@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -37,7 +37,7 @@ export function TimelineCard({
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-            <div className="flex items-center gap-2 text-sm text-secondary mt-1">
+            <div className="flex items-center gap-2 text-sm text-ink-muted mt-1">
               <Clock className="w-4 h-4" />
               <span>{timestamp}</span>
             </div>
@@ -46,13 +46,13 @@ export function TimelineCard({
         </div>
 
         {/* Description */}
-        <p className="text-secondary leading-relaxed">{description}</p>
+        <p className="text-ink-muted leading-relaxed">{description}</p>
 
         {/* Audio Playback */}
         {hasAudio && (
           <div className="flex items-center gap-2 p-3 bg-background rounded-lg">
             <Volume2 className="w-4 h-4 text-primary" />
-            <span className="text-xs text-secondary">Audio recording available</span>
+            <span className="text-xs text-ink-muted">Audio recording available</span>
           </div>
         )}
 

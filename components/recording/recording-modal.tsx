@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
@@ -35,10 +35,10 @@ export interface RecordingData {
 type Step = 'recording' | 'review' | 'sealing' | 'done';
 
 const STAGE_LABELS: Record<string, string> = {
-  'noah.analyze': 'Analyzing · NoahAI',
-  'ledger.seal': 'Sealing · Ledger',
-  'solana.sealEntry': 'Settling · Solana',
-  'virtuals.notifyCaregiver': 'Paging · Virtuals caregiver',
+  'noah.analyze': 'Analyzing Â· NoahAI',
+  'ledger.seal': 'Sealing Â· Ledger',
+  'solana.sealEntry': 'Settling Â· Solana',
+  'virtuals.notifyCaregiver': 'Paging Â· Virtuals caregiver',
 };
 
 export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps) {
@@ -113,7 +113,7 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
       const audioBase64 = await blobToBase64(recorder.audioBlob);
       const recordedAt = Math.floor(Date.now() / 1000);
 
-      // Note: we skip the live elevenlabs.transcribe step here — the user
+      // Note: we skip the live elevenlabs.transcribe step here â€” the user
       // already reviewed (and possibly edited) the transcript during the
       // review step. We feed the edited transcript directly into NoahAI.
       agent.session.events.push({
@@ -201,10 +201,10 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
               {step === 'done' && 'Entry sealed'}
             </h2>
             <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground mt-1">
-              {step === 'recording' && 'Tap to start · tap to stop'}
-              {step === 'review' && 'Listen back · fix anything the AI got wrong'}
-              {step === 'sealing' && (stage ? STAGE_LABELS[stage] ?? stage : 'Working…')}
-              {step === 'done' && 'On-chain · Solana devnet'}
+              {step === 'recording' && 'Tap to start Â· tap to stop'}
+              {step === 'review' && 'Listen back Â· fix anything the AI got wrong'}
+              {step === 'sealing' && (stage ? STAGE_LABELS[stage] ?? stage : 'Workingâ€¦')}
+              {step === 'done' && 'On-chain Â· Solana devnet'}
             </p>
           </div>
           <button
@@ -233,12 +233,12 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
                 />
               </div>
 
-              <div className="bg-background p-4 rounded-lg text-sm text-secondary">
+              <div className="bg-background p-4 rounded-lg text-sm text-ink-muted">
                 <p className="font-semibold text-foreground mb-2">Tips for best results:</p>
                 <ul className="space-y-1 text-xs">
-                  <li>• Speak clearly at your normal pace.</li>
-                  <li>• Mention severity, when it started, and any change since yesterday.</li>
-                  <li>• You&apos;ll be able to play it back and fix the transcript before saving.</li>
+                  <li>â€¢ Speak clearly at your normal pace.</li>
+                  <li>â€¢ Mention severity, when it started, and any change since yesterday.</li>
+                  <li>â€¢ You&apos;ll be able to play it back and fix the transcript before saving.</li>
                 </ul>
               </div>
             </div>
@@ -263,13 +263,13 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground flex items-center gap-2">
                   <Pencil className="w-3.5 h-3.5" />
-                  Transcript {transcribing ? '· transcribing…' : '· edit anything the AI got wrong'}
+                  Transcript {transcribing ? 'Â· transcribingâ€¦' : 'Â· edit anything the AI got wrong'}
                 </label>
                 <textarea
                   value={transcript}
                   onChange={(e) => setTranscript(e.target.value)}
                   disabled={transcribing}
-                  placeholder={transcribing ? 'Listening…' : 'Your transcribed words will appear here.'}
+                  placeholder={transcribing ? 'Listeningâ€¦' : 'Your transcribed words will appear here.'}
                   className="w-full px-3 py-3 border border-input rounded-md text-sm bg-background focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-60"
                   rows={6}
                 />
@@ -354,9 +354,9 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
             <div className="py-12 flex flex-col items-center justify-center gap-4 text-center">
               <Loader2 className="w-10 h-10 text-primary animate-spin" />
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                {stage ? STAGE_LABELS[stage] ?? stage : 'Working…'}
+                {stage ? STAGE_LABELS[stage] ?? stage : 'Workingâ€¦'}
               </p>
-              <p className="text-sm text-secondary max-w-md">
+              <p className="text-sm text-ink-muted max-w-md">
                 Encrypting on your hardware key, anchoring on Solana, and (if needed) paging
                 your caregiver agent.
               </p>
@@ -369,7 +369,7 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
                 <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold text-accent">Entry sealed.</p>
-                  <p className="text-sm text-secondary">
+                  <p className="text-sm text-ink-muted">
                     Your audio + transcript are encrypted off-chain and the on-chain pointer
                     is anchored. Only you and the doctors you grant access to can decrypt it.
                   </p>
@@ -379,11 +379,11 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
               <ul className="space-y-2 text-sm font-mono">
                 <li className="flex justify-between border-b border-border pb-2">
                   <span className="text-muted-foreground">Storage CID</span>
-                  <span className="text-foreground">{result.cid.slice(0, 8)}…{result.cid.slice(-6)}</span>
+                  <span className="text-foreground">{result.cid.slice(0, 8)}â€¦{result.cid.slice(-6)}</span>
                 </li>
                 <li className="flex justify-between border-b border-border pb-2">
                   <span className="text-muted-foreground">Solana tx</span>
-                  <span className="text-foreground">{result.txSignature.slice(0, 8)}…{result.txSignature.slice(-6)}</span>
+                  <span className="text-foreground">{result.txSignature.slice(0, 8)}â€¦{result.txSignature.slice(-6)}</span>
                 </li>
               </ul>
 
@@ -402,7 +402,7 @@ export function RecordingModal({ isOpen, onClose, onSave }: RecordingModalProps)
   );
 }
 
-// ─── helpers ────────────────────────────────────────────────────────────
+// â”€â”€â”€ helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function blobToBase64(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -420,7 +420,7 @@ function blobToBase64(blob: Blob): Promise<string> {
 function symptomTitleFromTranscript(t: string): string {
   const cleaned = t.trim().replace(/\s+/g, ' ');
   const firstSentence = cleaned.split(/[.!?]/)[0] ?? cleaned;
-  return firstSentence.length > 60 ? firstSentence.slice(0, 60) + '…' : firstSentence;
+  return firstSentence.length > 60 ? firstSentence.slice(0, 60) + 'â€¦' : firstSentence;
 }
 
 function currentStage(events: AgentEvent[]): string | null {

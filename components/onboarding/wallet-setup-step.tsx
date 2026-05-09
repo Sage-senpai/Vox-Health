@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -22,7 +22,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
     setHasAttempted(true);
     await connect();
     // Once connected, ask the agent to create the on-chain Patient PDA. This
-    // is idempotent — if the PDA already exists the tool short-circuits.
+    // is idempotent â€” if the PDA already exists the tool short-circuits.
     if (publicKey) {
       setInitStatus('pending');
       try {
@@ -30,7 +30,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
           'solana.initializePatient',
           { ledgerPubkey: publicKey },
         );
-        setInitDetail(`${result.source} · ${result.patientPda.slice(0, 8)}…${result.patientPda.slice(-4)}`);
+        setInitDetail(`${result.source} Â· ${result.patientPda.slice(0, 8)}â€¦${result.patientPda.slice(-4)}`);
         setInitStatus('done');
       } catch (err) {
         setInitDetail(err instanceof Error ? err.message : String(err));
@@ -45,7 +45,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
         <h2 className="text-3xl font-serif font-bold text-foreground">
           Secure Your Medical Data
         </h2>
-        <p className="text-secondary">
+        <p className="text-ink-muted">
           Connect your Solana wallet to encrypt and secure your health records.
         </p>
       </div>
@@ -53,7 +53,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
       {/* Explanation Card */}
       <div className="p-6 bg-background rounded-lg border border-border space-y-4">
         <h3 className="font-semibold text-foreground">What is a Solana Wallet?</h3>
-        <p className="text-sm text-secondary leading-relaxed">
+        <p className="text-sm text-ink-muted leading-relaxed">
           A Solana wallet is your secure digital identity. It lets you control access to your medical records 
           and grant permissions to doctors. Think of it as a secure vault for your health data that only you 
           can unlock.
@@ -62,19 +62,19 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
         <div className="space-y-3">
           <div className="flex gap-3">
             <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-secondary">
+            <p className="text-sm text-ink-muted">
               <span className="font-semibold text-foreground">Private & Secure:</span> Your keys stay with you
             </p>
           </div>
           <div className="flex gap-3">
             <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-secondary">
+            <p className="text-sm text-ink-muted">
               <span className="font-semibold text-foreground">Control Access:</span> Grant and revoke doctor access anytime
             </p>
           </div>
           <div className="flex gap-3">
             <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-secondary">
+            <p className="text-sm text-ink-muted">
               <span className="font-semibold text-foreground">Transparent:</span> No hidden fees or tracking
             </p>
           </div>
@@ -92,7 +92,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
             </div>
             <div>
               <p className="font-semibold text-foreground">Phantom Wallet</p>
-              <p className="text-xs text-secondary">Browser extension (recommended)</p>
+              <p className="text-xs text-ink-muted">Browser extension (recommended)</p>
             </div>
           </div>
         </button>
@@ -104,7 +104,7 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
             </div>
             <div>
               <p className="font-semibold text-foreground">Ledger Hardware Wallet</p>
-              <p className="text-xs text-secondary">Maximum security</p>
+              <p className="text-xs text-ink-muted">Maximum security</p>
             </div>
           </div>
         </button>
@@ -130,19 +130,19 @@ export function WalletSetupStep({ onNext, onSkip }: WalletSetupStepProps) {
                 {isConnected ? 'Wallet Connected Successfully' : 'Wallet Connection Failed'}
               </p>
               {isConnected && (
-                <ul className="text-xs text-secondary space-y-1 font-mono">
-                  <li>environment · {environment}</li>
-                  <li>signer · {hasLiveSigner ? 'live' : 'mock'}</li>
-                  {publicKey && <li>pubkey · {publicKey.slice(0, 8)}…{publicKey.slice(-4)}</li>}
+                <ul className="text-xs text-ink-muted space-y-1 font-mono">
+                  <li>environment Â· {environment}</li>
+                  <li>signer Â· {hasLiveSigner ? 'live' : 'mock'}</li>
+                  {publicKey && <li>pubkey Â· {publicKey.slice(0, 8)}â€¦{publicKey.slice(-4)}</li>}
                   {initStatus !== 'idle' && (
                     <li>
-                      patient PDA · {initStatus === 'pending' ? 'initializing…' : initDetail || initStatus}
+                      patient PDA Â· {initStatus === 'pending' ? 'initializingâ€¦' : initDetail || initStatus}
                     </li>
                   )}
                 </ul>
               )}
               {!isConnected && (
-                <p className="text-sm text-secondary">
+                <p className="text-sm text-ink-muted">
                   Install Phantom (desktop) or open VoxHealth in the Solana Mobile dApp Store browser.
                 </p>
               )}

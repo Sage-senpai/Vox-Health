@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Button } from '@/components/ui/button';
 import { Mic, Heart, Lock } from 'lucide-react';
@@ -22,7 +22,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
           Welcome to VoxHealth
         </h1>
 
-        <p className="text-lg text-secondary leading-relaxed max-w-xl mx-auto">
+        <p className="text-lg text-ink-muted leading-relaxed max-w-xl mx-auto">
           We&apos;re excited to help you take control of your health journey. 
           In just 4 simple steps, you&apos;ll be ready to start recording your symptoms and tracking your health.
         </p>
@@ -34,7 +34,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
           <Mic className="w-6 h-6 text-primary flex-shrink-0" />
           <div>
             <h3 className="font-semibold text-foreground">Voice-First</h3>
-            <p className="text-sm text-secondary">Simply speak your symptoms</p>
+            <p className="text-sm text-ink-muted">Simply speak your symptoms</p>
           </div>
         </div>
 
@@ -42,7 +42,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
           <Heart className="w-6 h-6 text-primary flex-shrink-0" />
           <div>
             <h3 className="font-semibold text-foreground">Track Everything</h3>
-            <p className="text-sm text-secondary">Medications, symptoms, and health patterns</p>
+            <p className="text-sm text-ink-muted">Medications, symptoms, and health patterns</p>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
           <Lock className="w-6 h-6 text-primary flex-shrink-0" />
           <div>
             <h3 className="font-semibold text-foreground">Stay Private</h3>
-            <p className="text-sm text-secondary">Your data is encrypted and HIPAA compliant</p>
+            <p className="text-sm text-ink-muted">Your data is encrypted and HIPAA compliant</p>
           </div>
         </div>
       </div>

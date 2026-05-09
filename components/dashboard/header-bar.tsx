@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Mic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,7 +20,7 @@ export function HeaderBar({ onRecordClick }: HeaderBarProps) {
           <h1 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
             {greeting}
           </h1>
-          <p className="text-sm text-secondary">
+          <p className="text-sm text-ink-muted">
             {dayOfWeek}, {monthDay}
           </p>
         </div>

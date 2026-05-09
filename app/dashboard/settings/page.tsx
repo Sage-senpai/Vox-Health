@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+﻿import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Settings, Bell, Lock, User, Download, Trash2 } from 'lucide-react';
@@ -11,7 +11,7 @@ export default function SettingsPage() {
         <h1 className="text-3xl font-serif font-bold text-foreground mb-1">
           Settings
         </h1>
-        <p className="text-secondary">
+        <p className="text-ink-muted">
           Manage your account and preferences
         </p>
       </div>
@@ -59,14 +59,14 @@ export default function SettingsPage() {
           <div className="flex items-center justify-between p-4 bg-background rounded-lg">
             <div>
               <p className="font-medium text-foreground">Medication Reminders</p>
-              <p className="text-sm text-secondary">Get notified when it&apos;s time to take medications</p>
+              <p className="text-sm text-ink-muted">Get notified when it&apos;s time to take medications</p>
             </div>
             <input type="checkbox" defaultChecked className="w-5 h-5" />
           </div>
           <div className="flex items-center justify-between p-4 bg-background rounded-lg">
             <div>
               <p className="font-medium text-foreground">Health Insights</p>
-              <p className="text-sm text-secondary">Weekly summaries of your health patterns</p>
+              <p className="text-sm text-ink-muted">Weekly summaries of your health patterns</p>
             </div>
             <input type="checkbox" defaultChecked className="w-5 h-5" />
           </div>
@@ -104,15 +104,15 @@ export default function SettingsPage() {
           <Settings className="w-6 h-6 text-muted-foreground mx-auto" />
           <div>
             <p className="font-medium text-foreground">VoxHealth v1.0</p>
-            <p className="text-sm text-secondary">
+            <p className="text-sm text-ink-muted">
               Your voice, your health story
             </p>
           </div>
           <div className="flex gap-2 justify-center text-xs text-muted-foreground">
             <a href="#" className="hover:text-primary">Terms</a>
-            <span>•</span>
+            <span>â€¢</span>
             <a href="#" className="hover:text-primary">Privacy</a>
-            <span>•</span>
+            <span>â€¢</span>
             <a href="#" className="hover:text-primary">Contact</a>
           </div>
         </div>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { CheckCircle2 } from 'lucide-react';
 
@@ -29,7 +29,7 @@ export function HowItWorks() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
             How It Works
           </h2>
-          <p className="text-lg text-secondary max-w-2xl mx-auto">
+          <p className="text-lg text-ink-muted max-w-2xl mx-auto">
             Get started in minutes. No complicated setup required.
           </p>
         </div>
@@ -53,7 +53,7 @@ export function HowItWorks() {
               {/* Content */}
               <div className="space-y-3 text-center">
                 <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                <p className="text-secondary leading-relaxed">{step.description}</p>
+                <p className="text-ink-muted leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}
@@ -65,7 +65,7 @@ export function HowItWorks() {
             <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
             <div>
               <h4 className="font-semibold text-foreground mb-2">Everything is encrypted and private</h4>
-              <p className="text-secondary">
+              <p className="text-ink-muted">
                 Your medical records are end-to-end encrypted. You control who sees what, and can revoke access anytime.
               </p>
             </div>

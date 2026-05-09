@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Shield, Check, TrendingUp } from 'lucide-react';
 
@@ -14,9 +14,9 @@ export function TrustSignals() {
           {/* HIPAA Compliant */}
           <div className="flex flex-col items-center gap-2">
             <div className="p-3 bg-secondary/10 rounded-lg">
-              <Shield className="w-6 h-6 text-secondary" />
+              <Shield className="w-6 h-6 text-ink-muted" />
             </div>
-            <p className="text-xs font-semibold text-secondary text-center">HIPAA Compliant</p>
+            <p className="text-xs font-semibold text-ink-muted text-center">HIPAA Compliant</p>
           </div>
 
           {/* Encrypted on Solana */}

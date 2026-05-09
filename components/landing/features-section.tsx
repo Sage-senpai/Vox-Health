@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Mic, Lock, Users, TrendingUp } from 'lucide-react';
 
@@ -34,7 +34,7 @@ export function FeaturesSection() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
             Why VoxHealth?
           </h2>
-          <p className="text-lg text-secondary max-w-2xl mx-auto">
+          <p className="text-lg text-ink-muted max-w-2xl mx-auto">
             Designed specifically for patients who want to take control of their health story.
           </p>
         </div>
@@ -52,7 +52,7 @@ export function FeaturesSection() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
-                  <p className="text-secondary leading-relaxed">{feature.description}</p>
+                  <p className="text-ink-muted leading-relaxed">{feature.description}</p>
                 </div>
               </div>
             );

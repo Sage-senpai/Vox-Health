@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -48,7 +48,7 @@ export function BasicInfoStep({ onNext }: BasicInfoStepProps) {
         <h2 className="text-3xl font-serif font-bold text-foreground">
           Tell Us About You
         </h2>
-        <p className="text-secondary">
+        <p className="text-ink-muted">
           This helps us personalize your health journey.
         </p>
       </div>

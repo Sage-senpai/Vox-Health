@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -49,7 +49,7 @@ export default function OnboardingPage() {
           <h1 className="text-3xl font-serif font-bold text-primary mb-2">
             VoxHealth
           </h1>
-          <p className="text-secondary">
+          <p className="text-ink-muted">
             Set up your account in {STEPS.length} easy steps
           </p>
         </div>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from 'lucide-react';
@@ -11,7 +11,7 @@ interface DateRangePickerProps {
 export function DateRangePicker({ selected, onSelect }: DateRangePickerProps) {
   return (
     <div className="flex items-center gap-2">
-      <Calendar className="w-4 h-4 text-secondary" />
+      <Calendar className="w-4 h-4 text-ink-muted" />
       <div className="flex gap-2 bg-background rounded-lg p-1">
         {(
           [

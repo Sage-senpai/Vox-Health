@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 interface RecordingTimerProps {
   duration: number;
@@ -16,7 +16,7 @@ export function RecordingTimer({ duration, isRecording }: RecordingTimerProps) {
         {formattedTime}
       </div>
       {isRecording && (
-        <p className="text-sm text-secondary mt-2">Recording in progress...</p>
+        <p className="text-sm text-ink-muted mt-2">Recording in progress...</p>
       )}
     </div>
   );

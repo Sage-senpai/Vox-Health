@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+﻿import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Plus, AlertCircle } from 'lucide-react';
 
@@ -11,7 +11,7 @@ export default function MedicationsPage() {
           <h1 className="text-3xl font-serif font-bold text-foreground mb-1">
             Your Medications
           </h1>
-          <p className="text-secondary">
+          <p className="text-ink-muted">
             Track your prescriptions and adherence
           </p>
         </div>
@@ -32,7 +32,7 @@ export default function MedicationsPage() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-lg font-semibold text-foreground">{med.name}</h3>
-                <p className="text-sm text-secondary">{med.dosage}</p>
+                <p className="text-sm text-ink-muted">{med.dosage}</p>
               </div>
               <div className="text-right">
                 <p className="text-2xl font-serif font-bold text-accent">{med.adherence}%</p>
@@ -40,7 +40,7 @@ export default function MedicationsPage() {
               </div>
             </div>
             <div className="flex items-center justify-between pt-4 border-t border-border">
-              <p className="text-sm text-secondary">{med.frequency}</p>
+              <p className="text-sm text-ink-muted">{med.frequency}</p>
               <Button variant="outline" size="sm">
                 Edit
               </Button>
@@ -55,7 +55,7 @@ export default function MedicationsPage() {
           <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="font-semibold text-foreground mb-2">Medication Reminders</h3>
-            <p className="text-sm text-secondary mb-4">
+            <p className="text-sm text-ink-muted mb-4">
               Enable notifications to help you stay on schedule with your medications
             </p>
             <Button variant="outline" size="sm">

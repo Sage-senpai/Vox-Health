@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -48,7 +48,7 @@ export default function TimelinePage() {
           <h1 className="text-3xl font-serif font-bold text-foreground mb-1">
             Your Health Timeline
           </h1>
-          <p className="text-secondary">
+          <p className="text-ink-muted">
             View all your entries, medications, and health records in one place
           </p>
         </div>

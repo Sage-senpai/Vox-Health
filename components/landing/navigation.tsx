@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -33,9 +33,9 @@ export function Navigation() {
                   className="hover:opacity-80 transition-opacity"
                   aria-label={social}
                 >
-                  {social === 'twitter' && '𝕏'}
-                  {social === 'discord' && '💬'}
-                  {social === 'linkedin' && '🔗'}
+                  {social === 'twitter' && 'ð•'}
+                  {social === 'discord' && 'ðŸ’¬'}
+                  {social === 'linkedin' && 'ðŸ”—'}
                 </button>
               ))}
             </div>
@@ -57,7 +57,7 @@ export function Navigation() {
             <div className="w-8 h-8 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center">
               <span className="text-white text-sm font-bold">V</span>
             </div>
-            <span className="text-secondary">VoxHealth</span>
+            <span className="text-ink-muted">VoxHealth</span>
           </div>
 
           {/* Center Navigation Links */}
@@ -66,7 +66,7 @@ export function Navigation() {
               <a
                 key={link}
                 href={`#${link.toLowerCase().replace(' ', '-')}`}
-                className="text-secondary hover:text-primary transition-colors text-sm font-medium"
+                className="text-ink-muted hover:text-primary transition-colors text-sm font-medium"
               >
                 {link}
               </a>

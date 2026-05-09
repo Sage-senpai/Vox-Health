@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -46,7 +46,7 @@ export function VoiceSetupStep({ onNext }: VoiceSetupStepProps) {
         <h2 className="text-3xl font-serif font-bold text-foreground">
           Set Up Your Voice
         </h2>
-        <p className="text-secondary">
+        <p className="text-ink-muted">
           Let&apos;s test your microphone to make sure everything works smoothly.
         </p>
       </div>
@@ -90,7 +90,7 @@ export function VoiceSetupStep({ onNext }: VoiceSetupStepProps) {
             </p>
           )}
           {!isRecording && !hasRecorded && (
-            <p className="text-base text-secondary">
+            <p className="text-base text-ink-muted">
               Click the button below to test your microphone
             </p>
           )}
@@ -116,10 +116,10 @@ export function VoiceSetupStep({ onNext }: VoiceSetupStepProps) {
           <Volume2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
           <div className="text-sm">
             <p className="font-semibold text-foreground">Pro Tips</p>
-            <ul className="text-secondary space-y-1 mt-2">
-              <li>• Speak clearly and at a normal volume</li>
-              <li>• Find a quiet space for best results</li>
-              <li>• You can always re-record your entries</li>
+            <ul className="text-ink-muted space-y-1 mt-2">
+              <li>â€¢ Speak clearly and at a normal volume</li>
+              <li>â€¢ Find a quiet space for best results</li>
+              <li>â€¢ You can always re-record your entries</li>
             </ul>
           </div>
         </div>

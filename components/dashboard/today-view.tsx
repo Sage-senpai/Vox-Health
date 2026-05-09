@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -22,8 +22,8 @@ const recentEntries = [
 ];
 
 const upcomingMeds = [
-  { name: 'Lisinopril', dosage: '10mg', time: '6:00 PM', icon: '💊' },
-  { name: 'Metformin', dosage: '500mg', time: '8:00 PM', icon: '💊' },
+  { name: 'Lisinopril', dosage: '10mg', time: '6:00 PM', icon: 'ðŸ’Š' },
+  { name: 'Metformin', dosage: '500mg', time: '8:00 PM', icon: 'ðŸ’Š' },
 ];
 
 export function TodayView() {
@@ -35,7 +35,7 @@ export function TodayView() {
           <h3 className="text-lg font-semibold text-foreground">
             How are you feeling today?
           </h3>
-          <p className="text-secondary leading-relaxed">
+          <p className="text-ink-muted leading-relaxed">
             Take a moment to describe any symptoms, concerns, or changes you&apos;ve noticed.
             You can always record more later.
           </p>
@@ -50,15 +50,15 @@ export function TodayView() {
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1 space-y-2">
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-secondary" />
-                  <span className="text-sm text-secondary">{entry.time}</span>
+                  <Clock className="w-4 h-4 text-ink-muted" />
+                  <span className="text-sm text-ink-muted">{entry.time}</span>
                 </div>
                 <h4 className="font-semibold text-foreground">{entry.title}</h4>
                 <div className="flex flex-wrap gap-2">
                   {entry.symptoms.map((symptom, i) => (
                     <span
                       key={i}
-                      className="inline-block px-2 py-1 bg-background rounded text-xs text-secondary"
+                      className="inline-block px-2 py-1 bg-background rounded text-xs text-ink-muted"
                     >
                       {symptom}
                     </span>
@@ -86,7 +86,7 @@ export function TodayView() {
               <div className="text-2xl">{med.icon}</div>
               <div>
                 <h4 className="font-semibold text-foreground">{med.name}</h4>
-                <p className="text-sm text-secondary">{med.dosage}</p>
+                <p className="text-sm text-ink-muted">{med.dosage}</p>
               </div>
             </div>
             <div className="text-right">
@@ -105,7 +105,7 @@ export function TodayView() {
           <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
           <div className="text-sm">
             <p className="font-semibold text-foreground mb-2">Stay Consistent</p>
-            <p className="text-secondary">
+            <p className="text-ink-muted">
               Regular entries help you and your doctor identify patterns and improvements in your health.
             </p>
           </div>
