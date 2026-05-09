@@ -3,18 +3,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* PAPER (LIGHT) - Default Theme */
+/* ============================================================
+   PAPER (LIGHT) — VoxHealth eldritch palette
+   ============================================================ */
 :root {
-  /* Surfaces */
-  --paper: #FAF7F2;
+  /* Surfaces — bone, paper, vellum */
+  --paper: #FBFAF5;
   --linen: #F2EEE6;
   --vellum: #E8E2D5;
   --rule: #DDD6C7;
 
   /* Ink */
-  --ink: #0E1116;
+  --ink: #0B0E12;
   --ink-muted: #44474C;
   --ink-subtle: #6E7176;
+  --ash: #8A8A8A;
 
   /* Accents */
   --sage: #2E7E6F;
@@ -22,188 +25,471 @@
   --coral: #D9573F;
   --coral-soft: #F6D9D2;
   --amber: #C28A2A;
-  --amber-soft-light: #F2E3C6;
+  --amber-soft: #F2E3C6;
   --indigo: #2D3F8F;
+  --void: #030305;
 
-  /* Semantic mappings */
+  /* Eldritch primitives */
+  --vox-shadow: 14px 16px 0 rgba(11, 14, 18, 0.92);
+  --vox-shadow-sm: 7px 8px 0 rgba(11, 14, 18, 0.22);
+  --vox-shadow-accent: 7px 8px 0 rgba(46, 126, 111, 0.34);
+  --vox-sigil: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  --vox-notch: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  --vox-hex: polygon(50% 0, 94% 23%, 94% 77%, 50% 100%, 6% 77%, 6% 23%);
+
+  /* Semantic mappings (shadcn) */
   --background: var(--paper);
   --foreground: var(--ink);
-  --card: var(--linen);
+  --card: rgba(255, 255, 255, 0.86);
   --card-foreground: var(--ink);
-  --muted: var(--ink-muted);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --muted: var(--linen);
   --muted-foreground: var(--ink-subtle);
   --border: var(--rule);
   --input: var(--linen);
   --primary: var(--sage);
-  --primary-foreground: white;
-  --secondary: var(--ink-muted);
-  --accent: var(--sage);
+  --primary-foreground: #ffffff;
+  --secondary: var(--vellum);
+  --secondary-foreground: var(--ink);
+  --accent: var(--sage-soft);
+  --accent-foreground: var(--ink);
   --destructive: var(--coral);
+  --destructive-foreground: #ffffff;
   --ring: var(--sage);
 
-  /* Radius */
   --radius: 0.875rem;
 }
 
-/* INK (DARK) Theme */
+/* ============================================================
+   INK (DARK) — Inverted void surface
+   ============================================================ */
 .dark {
-  /* Surfaces */
   --paper: #0B0E12;
   --linen: #14181E;
   --vellum: #1C2128;
   --rule: #2A2F37;
 
-  /* Ink */
   --ink: #F2EEE6;
   --ink-muted: #B5B0A6;
   --ink-subtle: #7B7973;
+  --ash: #6A6A6A;
 
-  /* Accents (same hex in both themes) */
-  --sage: #2E7E6F;
-  --sage-soft: #C8E0D8;
-  --coral: #D9573F;
-  --coral-soft: #F6D9D2;
-  --amber: #C28A2A;
-  --amber-soft-dark: #3A2E18;
-  --indigo: #2D3F8F;
+  --sage: #4DB39E;
+  --sage-soft: #1F3D38;
+  --coral: #E37A65;
+  --coral-soft: #3A2018;
+  --amber: #E0A85C;
+  --amber-soft: #3A2E18;
+  --indigo: #6478D6;
 
-  /* Semantic mappings */
   --background: var(--paper);
   --foreground: var(--ink);
-  --card: var(--linen);
-  --card-foreground: var(--ink);
-  --muted: var(--ink-muted);
-  --muted-foreground: var(--ink-subtle);
-  --border: var(--rule);
-  --input: var(--linen);
-  --primary: var(--sage);
-  --primary-foreground: white;
-  --secondary: var(--ink-muted);
-  --accent: var(--sage);
-  --destructive: var(--coral);
-  --ring: var(--sage);
 }
 
+/* ============================================================
+   Tailwind v4 token registration
+   ============================================================ */
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 
+  --color-paper: var(--paper);
+  --color-linen: var(--linen);
+  --color-vellum: var(--vellum);
+  --color-rule: var(--rule);
 
-/* Typography Scale - mobile-first */
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ash: var(--ash);
+
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-indigo: var(--indigo);
+  --color-void: var(--void);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  background: var(--paper);
+  color: var(--ink);
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     border-color: var(--border);
     outline-color: var(--ring);
   }
-  
+
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-sans);
-    font-size: 17px; /* 17px on mobile per spec */
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans), 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  @media (min-width: 1024px) {
-    body {
-      font-size: 16px; /* 16px on desktop */
-    }
+  h1, h2, h3, .font-eldritch {
+    font-family: var(--font-display), Unbounded, 'IBM Plex Sans', system-ui, sans-serif;
+    letter-spacing: 0;
   }
 
-  /* Display-XL: 3.5rem / 1.05 / -0.02em (hero only) */
-  .display-xl {
-    font-size: 3.5rem;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    font-family: var(--font-serif);
-    font-weight: 600;
+  ::selection {
+    background: var(--sage);
+    color: #fff;
   }
 
-  /* Display-L: 2.5rem / 1.08 / -0.015em */
-  .display-l {
-    font-size: 2.5rem;
-    line-height: 1.08;
-    letter-spacing: -0.015em;
-    font-family: var(--font-serif);
-    font-weight: 600;
+  :focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 4px;
+  }
+}
+
+/* ============================================================
+   Eldritch keyframes
+   ============================================================ */
+@keyframes vox-drift {
+  0%   { transform: translate3d(-3%, -2%, 0) rotate(0deg) scale(1); }
+  50%  { transform: translate3d(3%, 2%, 0) rotate(2deg) scale(1.04); }
+  100% { transform: translate3d(-3%, -2%, 0) rotate(0deg) scale(1); }
+}
+@keyframes vox-pulse-line {
+  0%, 100% { opacity: 0.08; transform: translateY(0); }
+  50%      { opacity: 0.20; transform: translateY(12px); }
+}
+@keyframes vox-enter {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes vox-slide-x {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes vox-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes vox-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes vox-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.65; }
+  50%      { transform: scale(1.06); opacity: 1; }
+}
+
+/* ============================================================
+   Eldritch components
+   ============================================================ */
+@layer components {
+  /* Drifting nascent background */
+  .nascent-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(46, 126, 111, 0.10), transparent 24rem),
+      radial-gradient(circle at 78% 8%, rgba(11, 14, 18, 0.06), transparent 18rem),
+      radial-gradient(circle at 50% 90%, rgba(45, 63, 143, 0.06), transparent 20rem),
+      linear-gradient(115deg, rgba(255, 255, 255, 0.96), rgba(244, 241, 232, 0.92));
+  }
+  .nascent-bg::before {
+    content: '';
+    position: absolute;
+    inset: -12%;
+    background-image:
+      linear-gradient(rgba(11, 14, 18, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11, 14, 18, 0.06) 1px, transparent 1px);
+    background-size: 76px 76px;
+    mask-image: radial-gradient(circle at center, black, transparent 72%);
+    animation: vox-drift 22s ease-in-out infinite;
+  }
+  .nascent-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(107deg, transparent 0 34px, rgba(46, 126, 111, 0.07) 35px, transparent 36px);
+    animation: vox-pulse-line 11s ease-in-out infinite;
   }
 
-  /* Display-M: 2rem / 1.12 / -0.01em (page titles) */
-  .display-m {
-    font-size: 2rem;
-    line-height: 1.12;
-    letter-spacing: -0.01em;
-    font-family: var(--font-serif);
-    font-weight: 600;
+  /* Hexagon sigil floating in hero */
+  .sigil-field {
+    position: absolute;
+    inset: 14vh 5vw auto auto;
+    width: min(44vw, 560px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(11, 14, 18, 0.16);
+    clip-path: var(--vox-hex);
+    box-shadow: inset 0 0 0 22px rgba(255, 255, 255, 0.36), inset 0 0 70px rgba(46, 126, 111, 0.12);
+    animation: vox-drift 28s ease-in-out infinite reverse;
+    pointer-events: none;
+  }
+  @media (max-width: 768px) {
+    .sigil-field { display: none; }
   }
 
-  /* Title: 1.5rem / 1.2 / -0.005em (card headlines) */
-  .title {
-    font-size: 1.5rem;
-    line-height: 1.2;
-    letter-spacing: -0.005em;
-    font-family: var(--font-serif);
-    font-weight: 600;
+  /* Constraining shell — 1180px max */
+  .section-shell {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 32px));
+    margin-inline: auto;
   }
 
-  /* Subtitle: 1.125rem / 1.35 */
-  .subtitle {
-    font-size: 1.125rem;
-    line-height: 1.35;
-    font-family: var(--font-sans);
-    font-weight: 600;
+  /* Notched panels and cards */
+  .ink-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(11, 14, 18, 0.86);
+    clip-path: var(--vox-sigil);
+    box-shadow: var(--vox-shadow);
+    backdrop-filter: blur(12px);
+  }
+  .ink-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(11, 14, 18, 0.8);
+    clip-path: var(--vox-sigil);
+    box-shadow: 8px 10px 0 rgba(11, 14, 18, 0.9);
+    transition:
+      transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      background-color 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .ink-card:hover {
+    transform: translate(-3px, -4px);
+    box-shadow: 14px 16px 0 rgba(11, 14, 18, 0.92);
+    background: rgba(255, 255, 255, 0.98);
+  }
+  .ink-card-accent { border-left: 4px solid var(--sage); }
+  .ink-card-amber  { border-left: 4px solid var(--amber); }
+  .ink-card-coral  { border-left: 4px solid var(--coral); }
+  .ink-card-indigo { border-left: 4px solid var(--indigo); }
+
+  .ink-card-dark {
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+    clip-path: var(--vox-sigil);
+    box-shadow: 8px 10px 0 rgba(46, 126, 111, 0.42);
   }
 
-  /* Body-L: 1.125rem / 1.6 (default for elderly/patient flows) */
-  .body-l {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    font-family: var(--font-sans);
-    font-weight: 400;
+  .shadow-word {
+    text-shadow: 4px 5px 0 rgba(46, 126, 111, 0.18);
   }
 
-  /* Body: 1rem / 1.6 (clinician flows) */
-  .body {
-    font-size: 1rem;
-    line-height: 1.6;
-    font-family: var(--font-sans);
-    font-weight: 400;
+  /* Rune dotted hairline */
+  .rune-rule {
+    height: 1px;
+    background:
+      linear-gradient(90deg, transparent, rgba(11, 14, 18, 0.9), transparent),
+      repeating-linear-gradient(90deg, transparent 0 14px, rgba(11, 14, 18, 0.5) 15px 16px);
   }
 
-  /* Caption: 0.875rem / 1.45 */
-  .caption {
-    font-size: 0.875rem;
-    line-height: 1.45;
-    font-family: var(--font-sans);
-    font-weight: 500;
-  }
-
-  /* Micro: 0.75rem / 1.4 / +0.04em UPPERCASE (labels only) */
-  .micro {
-    font-size: 0.75rem;
-    line-height: 1.4;
-    letter-spacing: 0.04em;
-    font-family: var(--font-sans);
+  /* Buttons — notched diagonal */
+  .btn-primary,
+  .btn-secondary,
+  .btn-accent,
+  .btn-ghost {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    clip-path: var(--vox-notch);
+    border: 1px solid var(--ink);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-display), Unbounded, system-ui, sans-serif;
+    font-size: 0.82rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 7px 8px 0 rgba(11, 14, 18, 0.22);
+  }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.74);
+    color: var(--ink);
+    box-shadow: 7px 8px 0 rgba(11, 14, 18, 0.16);
+  }
+  .btn-accent {
+    background: var(--sage);
+    color: #fff;
+    box-shadow: var(--vox-shadow-accent);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    box-shadow: none;
+    border-color: rgba(11, 14, 18, 0.4);
+  }
+  .btn-primary:hover, .btn-secondary:hover, .btn-accent:hover, .btn-ghost:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: 11px 12px 0 rgba(11, 14, 18, 0.28);
+  }
+  .btn-accent:hover {
+    box-shadow: 11px 12px 0 rgba(46, 126, 111, 0.42);
   }
 
-  /* Mono: 0.875rem / 1.5 (data tokens) */
-  .mono {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    font-family: var(--font-mono);
-    font-weight: 500;
-  }
-
-  /* Vital: 4rem / 1 / -0.025em (big numbers) */
-  .vital {
-    font-size: 4rem;
+  /* Glyph badges */
+  .glyph-badge {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--ink);
+    clip-path: var(--vox-notch);
+    background: rgba(255, 255, 255, 0.74);
+    padding: 0.4rem 0.85rem;
+    font-family: var(--font-mono), 'Space Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     line-height: 1;
-    letter-spacing: -0.025em;
-    font-family: var(--font-serif);
-    font-weight: 600;
+  }
+  .glyph-badge-accent { background: var(--sage); color: #fff; border-color: var(--sage); }
+  .glyph-badge-amber  { background: var(--amber); color: var(--ink); border-color: var(--amber); }
+  .glyph-badge-coral  { background: var(--coral); color: #fff; border-color: var(--coral); }
+  .glyph-badge-ink    { background: var(--ink); color: var(--paper); }
+
+  .metric-number {
+    font-family: var(--font-mono), 'Space Mono', monospace;
     font-variant-numeric: tabular-nums;
   }
 
-  /* Ensure minimum sizes */
-  p, span, div {
-    min-height: 1.4em;
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--ink);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--ink);
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    font-family: var(--font-mono), 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
   }
+  .pill-active {
+    background: var(--sage);
+    color: #fff;
+    border-color: var(--sage);
+  }
+
+  /* Marquee strip */
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 3rem;
+    animation: vox-marquee 32s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* Display utilities */
+  .display-xl {
+    font-family: var(--font-display), Unbounded, system-ui, sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+  .display-l {
+    font-family: var(--font-display), Unbounded, system-ui, sans-serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .display-m {
+    font-family: var(--font-display), Unbounded, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+  }
+  .vital {
+    font-family: var(--font-mono), 'Space Mono', monospace;
+    font-size: 4rem;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Animation helpers */
+  .appear   { animation: vox-enter 520ms ease both; }
+  .slide-x  { animation: vox-slide-x 380ms ease both; }
+  .fade-in  { animation: vox-fade 420ms ease both; }
+  .breathe  { animation: vox-breathe 5s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+  /* Bottom orb glow */
+  .orb-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(46, 126, 111, 0.55) 0%, rgba(46, 126, 111, 0) 70%);
+  }
+}
+
+@media (max-width: 639px) {
+  .ink-panel { box-shadow: 8px 10px 0 rgba(11, 14, 18, 0.88); }
+  .ink-card  { box-shadow: 6px 7px 0 rgba(11, 14, 18, 0.85); }
+  .ink-card:hover { transform: none; box-shadow: 6px 7px 0 rgba(11, 14, 18, 0.85); }
 }
