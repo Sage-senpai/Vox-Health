@@ -3,9 +3,9 @@ import Link from 'next/link';
 export function EldritchFooter() {
   return (
     <footer className="relative z-10 bg-ink text-paper border-t border-ink">
-      <div className="section-shell py-16 md:py-20">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-          <div className="md:col-span-5">
+      <div className="section-shell py-12 sm:py-16 md:py-20">
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16">
+          <div className="col-span-2 lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
               <span
                 className="inline-block w-9 h-9 bg-paper text-ink grid place-items-center font-display font-bold text-base"
@@ -76,7 +76,7 @@ function FooterCol({
   links: { label: string; href: string; external?: boolean }[];
 }) {
   return (
-    <div className="md:col-span-2">
+    <div className="lg:col-span-2">
       <h4 className="font-mono text-[10px] uppercase tracking-[0.2em] text-paper/50 mb-5">
         {title}
       </h4>

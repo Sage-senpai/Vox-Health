@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export function EldritchHero() {
   return (
-    <section className="section-shell relative z-10 pt-8 pb-16 sm:pt-12 sm:pb-20 md:pb-28 appear">
-      <div className="grid w-full gap-10 lg:gap-14 md:grid-cols-[1.1fr_0.9fr] items-center">
+    <section className="section-shell relative z-10 pt-8 pb-16 sm:pt-12 sm:pb-20 md:pb-28 lg:pt-16 2xl:pt-20 appear">
+      <div className="grid w-full gap-10 lg:gap-14 2xl:gap-20 lg:grid-cols-[1.1fr_0.9fr] items-center">
         {/* Left — title block */}
         <div>
           <div className="flex flex-wrap gap-2 mb-6">
@@ -21,21 +21,21 @@ export function EldritchHero() {
 
           <div className="rune-rule my-7 sm:my-9" />
 
-          <p className="max-w-xl text-base sm:text-lg text-ink-muted leading-relaxed">
+          <p className="max-w-xl text-base sm:text-lg 2xl:text-xl text-ink-muted leading-relaxed">
             VoxHealth is a voice-first medical journal. Patients speak their symptoms, ElevenLabs
             transcribes, NoahAI flags patterns, the entry is encrypted by a Ledger hardware wallet
             and sealed onto Solana. Doctors scan a QR — they see your full history for a window you
             choose. Then access expires.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/onboarding" className="btn-accent">
+          <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
+            <Link href="/onboarding" className="btn-accent w-full sm:w-auto">
               <span>◉ Record First Entry</span>
             </Link>
-            <Link href="/app" className="btn-secondary">
+            <Link href="/app" className="btn-secondary w-full sm:w-auto">
               <span>Open Patient App →</span>
             </Link>
-            <a href="#how" className="btn-ghost">
+            <a href="#how" className="btn-ghost w-full sm:w-auto">
               <span>How it works</span>
             </a>
           </div>
@@ -93,7 +93,7 @@ export function EldritchHero() {
 
           {/* Offset shadow plate */}
           <div
-            className="hidden md:block absolute -bottom-3 -left-3 h-full w-full -z-10 border border-ink"
+            className="hidden lg:block absolute -bottom-3 -left-3 h-full w-full -z-10 border border-ink"
             style={{ clipPath: 'var(--vox-sigil)' }}
             aria-hidden
           />

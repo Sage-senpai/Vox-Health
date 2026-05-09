@@ -51,8 +51,8 @@ export class HealthAgent {
     this.maxSteps = opts.maxSteps ?? 12;
   }
 
-  register(tools: ToolDefinition[]): this {
-    for (const t of tools) this.tools.set(t.name, t);
+  register(tools: ToolDefinition<any, any>[]): this {
+    for (const t of tools) this.tools.set(t.name, t as ToolDefinition);
     return this;
   }
 

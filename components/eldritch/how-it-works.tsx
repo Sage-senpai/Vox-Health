@@ -35,9 +35,9 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how" className="relative z-10 py-20 md:py-28 border-t border-ink/10 bg-paper">
+    <section id="how" className="relative z-10 py-16 sm:py-20 md:py-28 2xl:py-36 border-t border-ink/10 bg-paper">
       <div className="section-shell">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-end lg:justify-between gap-6 mb-10 md:mb-12 2xl:mb-16">
           <div>
             <div className="glyph-badge mb-4">§ 02 — Ritual</div>
             <h2 className="display-l">
@@ -52,9 +52,9 @@ export function HowItWorks() {
           </p>
         </div>
 
-        <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 2xl:gap-6">
           {steps.map((step) => (
-            <li key={step.n} className="ink-card p-7 flex flex-col">
+            <li key={step.n} className="ink-card p-6 sm:p-7 2xl:p-8 flex flex-col">
               <div className="flex items-baseline justify-between mb-5">
                 <span className="metric-number text-sm text-ink-subtle">{step.n}</span>
                 <span aria-hidden className="text-2xl text-sage">{step.glyph}</span>
@@ -62,7 +62,7 @@ export function HowItWorks() {
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-subtle mb-3">
                 {step.kicker}
               </p>
-              <h3 className="font-display font-bold text-3xl mb-3">{step.title}</h3>
+              <h3 className="font-display font-bold text-2xl sm:text-3xl mb-3">{step.title}</h3>
               <p className="text-sm text-ink-muted leading-relaxed">{step.body}</p>
             </li>
           ))}

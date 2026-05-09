@@ -16,16 +16,16 @@ export function SponsorStrip() {
       aria-label="Sponsors"
       className="border-y border-ink/10 bg-paper py-6 relative z-10"
     >
-      <div className="section-shell flex items-center gap-6">
+      <div className="section-shell flex items-center gap-4 sm:gap-6">
         <span className="hidden md:inline-flex glyph-badge glyph-badge-ink whitespace-nowrap">
           Built with
         </span>
-        <div className="marquee flex-1">
+        <div className="marquee flex-1 min-w-0">
           <div className="marquee-track">
             {items.map((s, i) => (
               <div
                 key={`${s}-${i}`}
-                className="flex items-center gap-3 font-display font-bold text-xl md:text-2xl text-ink/80 hover:text-sage transition-colors"
+                className="flex items-center gap-3 font-display font-bold text-base sm:text-xl md:text-2xl text-ink/80 hover:text-sage transition-colors"
               >
                 <span aria-hidden className="text-sage text-base">◆</span>
                 <span className="whitespace-nowrap">{s}</span>

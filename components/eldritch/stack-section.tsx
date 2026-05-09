@@ -66,9 +66,9 @@ export function StackSection() {
   ];
 
   return (
-    <section id="stack" className="relative z-10 py-20 md:py-28 border-t border-ink/10">
+    <section id="stack" className="relative z-10 py-16 sm:py-20 md:py-28 2xl:py-36 border-t border-ink/10">
       <div className="section-shell">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-end lg:justify-between gap-6 mb-10 md:mb-14 2xl:mb-16">
           <div>
             <div className="glyph-badge glyph-badge-ink mb-4">§ 03 — The stack</div>
             <h2 className="display-l">
@@ -83,13 +83,13 @@ export function StackSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-5 2xl:gap-6">
           {stack.map((s) => (
             <StackCard key={s.name} {...s} />
           ))}
 
           {/* Joinder card — vendor agnostic */}
-          <article className="ink-card-dark p-7 md:p-8 flex flex-col justify-between">
+          <article className="ink-card-dark p-6 sm:p-7 md:p-8 flex flex-col justify-between">
             <div>
               <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-paper/60 mb-3">
                 + your contribution
@@ -149,7 +149,7 @@ function StackCard({
   }[accent];
 
   return (
-    <article className={`${cardClass} p-7 md:p-8 flex flex-col`}>
+    <article className={`${cardClass} p-6 sm:p-7 md:p-8 flex flex-col`}>
       <div className="flex items-start justify-between mb-5">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-subtle mb-2">

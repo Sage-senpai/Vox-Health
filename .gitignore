@@ -5,6 +5,7 @@
 node_modules
 .next/
 .snowflake/
+tsconfig.tsbuildinfo
 
 # OS files
 .DS_Store

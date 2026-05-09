@@ -4,7 +4,6 @@ import { SponsorStrip } from '@/components/eldritch/sponsor-strip';
 import { ProblemSection } from '@/components/eldritch/problem-section';
 import { HowItWorks } from '@/components/eldritch/how-it-works';
 import { StackSection } from '@/components/eldritch/stack-section';
-import { TracksSection } from '@/components/eldritch/tracks-section';
 import { PatientsSection } from '@/components/eldritch/patients-section';
 import { FinalCta } from '@/components/eldritch/final-cta';
 import { EldritchFooter } from '@/components/eldritch/footer';
@@ -21,7 +20,6 @@ export default function Home() {
       <ProblemSection />
       <HowItWorks />
       <StackSection />
-      <TracksSection />
       <PatientsSection />
       <FinalCta />
       <EldritchFooter />

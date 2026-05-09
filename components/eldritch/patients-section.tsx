@@ -27,9 +27,9 @@ export function PatientsSection() {
   ];
 
   return (
-    <section id="patients" className="relative z-10 py-20 md:py-28 border-t border-ink/10">
+    <section id="patients" className="relative z-10 py-16 sm:py-20 md:py-28 2xl:py-36 border-t border-ink/10">
       <div className="section-shell">
-        <div className="grid md:grid-cols-12 gap-10 items-end mb-12">
+        <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-end mb-10 md:mb-12 2xl:mb-16">
           <div className="md:col-span-7">
             <div className="glyph-badge mb-4">§ 05 — Who it serves</div>
             <h2 className="display-l">
@@ -45,11 +45,11 @@ export function PatientsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 2xl:gap-6">
           {cohorts.map((c) => (
-            <article key={c.tag} className="ink-card p-7 md:p-8 flex flex-col">
+            <article key={c.tag} className="ink-card p-6 sm:p-7 md:p-8 flex flex-col sm:last:col-span-2 lg:last:col-span-1">
               <span className="glyph-badge mb-5">{c.tag}</span>
-              <p className="metric-number text-5xl md:text-6xl font-bold leading-none">
+              <p className="metric-number text-4xl sm:text-5xl md:text-6xl font-bold leading-none">
                 {c.headline}
               </p>
               <p className="mt-3 text-xs font-mono uppercase tracking-[0.18em] text-ink-subtle">

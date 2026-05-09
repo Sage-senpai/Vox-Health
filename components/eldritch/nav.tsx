@@ -17,18 +17,17 @@ export function EldritchNav() {
             V
           </span>
           <span className="font-display font-bold tracking-tight text-lg">VoxHealth</span>
-          <span className="hidden md:inline-flex glyph-badge ml-2">v0 · Devnet</span>
+          <span className="hidden xl:inline-flex glyph-badge ml-2">v0 · Devnet</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-mono uppercase tracking-[0.18em]">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-mono uppercase tracking-[0.18em]">
           <a href="#problem" className="hover:text-sage transition-colors">Problem</a>
           <a href="#how" className="hover:text-sage transition-colors">How it works</a>
           <a href="#stack" className="hover:text-sage transition-colors">Stack</a>
-          <a href="#tracks" className="hover:text-sage transition-colors">Tracks</a>
           <a href="#patients" className="hover:text-sage transition-colors">Patients</a>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <Link href="/app" className="btn-secondary">Open App →</Link>
           <Link href="/onboarding" className="btn-accent">Start Recording</Link>
         </div>
@@ -36,7 +35,7 @@ export function EldritchNav() {
         <button
           aria-label="Toggle menu"
           aria-expanded={open}
-          className="md:hidden w-10 h-10 grid place-items-center border border-ink"
+          className="lg:hidden w-10 h-10 grid place-items-center border border-ink"
           style={{ clipPath: 'var(--vox-notch)' }}
           onClick={() => setOpen(!open)}
         >
@@ -51,16 +50,15 @@ export function EldritchNav() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-ink/10 bg-paper">
+        <div className="lg:hidden border-t border-ink/10 bg-paper">
           <div className="section-shell flex flex-col gap-3 py-5 text-sm font-mono uppercase tracking-[0.18em]">
             <a href="#problem" onClick={() => setOpen(false)}>Problem</a>
             <a href="#how" onClick={() => setOpen(false)}>How it works</a>
             <a href="#stack" onClick={() => setOpen(false)}>Stack</a>
-            <a href="#tracks" onClick={() => setOpen(false)}>Tracks</a>
             <a href="#patients" onClick={() => setOpen(false)}>Patients</a>
-            <div className="flex gap-3 mt-3">
-              <Link href="/app" className="btn-secondary flex-1">Open App</Link>
-              <Link href="/onboarding" className="btn-accent flex-1">Start</Link>
+            <div className="flex flex-col sm:flex-row gap-3 mt-3">
+              <Link href="/app" className="btn-secondary flex-1 justify-center">Open App</Link>
+              <Link href="/onboarding" className="btn-accent flex-1 justify-center">Start</Link>
             </div>
           </div>
         </div>

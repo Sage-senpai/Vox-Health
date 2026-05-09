@@ -1,8 +1,8 @@
 export function ProblemSection() {
   return (
-    <section id="problem" className="relative z-10 py-20 md:py-28">
+    <section id="problem" className="relative z-10 py-16 sm:py-20 md:py-28 2xl:py-36">
       <div className="section-shell">
-        <div className="grid md:grid-cols-12 gap-10">
+        <div className="grid md:grid-cols-12 gap-8 md:gap-10 2xl:gap-16">
           <div className="md:col-span-5">
             <div className="glyph-badge mb-5">§ 01 — The break</div>
             <h2 className="display-l">
@@ -17,7 +17,7 @@ export function ProblemSection() {
             </p>
           </div>
 
-          <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 2xl:gap-6">
             <Stat headline="30%" body="of medical errors trace back to incomplete patient histories." accent="coral" />
             <Stat headline="133M" body="adults in the US live with a chronic condition." accent="amber" />
             <Stat headline="53M" body="family caregivers manage another person's medications." accent="indigo" />

@@ -20,11 +20,12 @@
   --ash: #8A8A8A;
 
   /* Accents */
-  --sage: #2E7E6F;
+  --sage: #1E6B5D;          /* deepened for AA text contrast on paper (5.6:1) */
+  --sage-bright: #2E9C87;   /* vibrant variant for glows, halos, glyph dots */
   --sage-soft: #C8E0D8;
-  --coral: #D9573F;
+  --coral: #B8442C;         /* deepened from #D9573F for AA contrast */
   --coral-soft: #F6D9D2;
-  --amber: #C28A2A;
+  --amber: #9A6B16;         /* deepened from #C28A2A for AA contrast */
   --amber-soft: #F2E3C6;
   --indigo: #2D3F8F;
   --void: #030305;
@@ -32,7 +33,7 @@
   /* Eldritch primitives */
   --vox-shadow: 14px 16px 0 rgba(11, 14, 18, 0.92);
   --vox-shadow-sm: 7px 8px 0 rgba(11, 14, 18, 0.22);
-  --vox-shadow-accent: 7px 8px 0 rgba(46, 126, 111, 0.34);
+  --vox-shadow-accent: 7px 8px 0 rgba(30, 107, 93, 0.34);
   --vox-sigil: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
   --vox-notch: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
   --vox-hex: polygon(50% 0, 94% 23%, 94% 77%, 50% 100%, 6% 77%, 6% 23%);
@@ -257,8 +258,8 @@ html {
   /* Hexagon sigil floating in hero */
   .sigil-field {
     position: absolute;
-    inset: 14vh 5vw auto auto;
-    width: min(44vw, 560px);
+    inset: 12vh 4vw auto auto;
+    width: min(38vw, 560px);
     aspect-ratio: 1;
     border: 1px solid rgba(11, 14, 18, 0.16);
     clip-path: var(--vox-hex);
@@ -266,16 +267,21 @@ html {
     animation: vox-drift 28s ease-in-out infinite reverse;
     pointer-events: none;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1023px) {
     .sigil-field { display: none; }
   }
 
-  /* Constraining shell — 1180px max */
+  /* Constraining shell — fluid padding, scales to 1440px on 2xl */
   .section-shell {
     position: relative;
     z-index: 1;
-    width: min(1180px, calc(100% - 32px));
+    width: 100%;
+    max-width: 1180px;
     margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+  @media (min-width: 1536px) {
+    .section-shell { max-width: 1440px; }
   }
 
   /* Notched panels and cards */
@@ -489,7 +495,16 @@ html {
 }
 
 @media (max-width: 639px) {
-  .ink-panel { box-shadow: 8px 10px 0 rgba(11, 14, 18, 0.88); }
-  .ink-card  { box-shadow: 6px 7px 0 rgba(11, 14, 18, 0.85); }
-  .ink-card:hover { transform: none; box-shadow: 6px 7px 0 rgba(11, 14, 18, 0.85); }
+  .ink-panel { box-shadow: 6px 7px 0 rgba(11, 14, 18, 0.88); }
+  .ink-card  { box-shadow: 5px 6px 0 rgba(11, 14, 18, 0.85); }
+  .ink-card:hover { transform: none; box-shadow: 5px 6px 0 rgba(11, 14, 18, 0.85); }
+  .ink-card-dark { box-shadow: 5px 6px 0 rgba(46, 126, 111, 0.42); }
+  .btn-primary, .btn-secondary, .btn-accent { box-shadow: 5px 6px 0 rgba(11, 14, 18, 0.18); }
+  .btn-accent { box-shadow: 5px 6px 0 rgba(46, 126, 111, 0.34); }
+  .marquee-track { gap: 2rem; }
+}
+
+/* Tablet — sigil shadow trim and tighter card offset */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .ink-panel { box-shadow: 10px 12px 0 rgba(11, 14, 18, 0.9); }
 }
