@@ -1,11 +1,18 @@
 'use client';
 
-import { VoiceOrb } from './voice-orb';
+import { useEffect, useState } from 'react';
+import { AgenticOrb } from './agentic-orb';
 import { TrustStrip } from './trust-strip';
 
 export function PatientHome() {
   const userName = 'Margaret';
-  const greeting = getGreeting();
+  const [greeting, setGreeting] = useState('Hello');
+  const [today, setToday] = useState('');
+
+  useEffect(() => {
+    setGreeting(getGreeting());
+    setToday(todayLabel());
+  }, []);
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -38,7 +45,7 @@ export function PatientHome() {
             <div className="md:col-span-7 animate-float-up">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-soft text-sage text-xs font-semibold uppercase tracking-[0.18em] mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-sage" />
-                {todayLabel()}
+                {today || ' '}
               </div>
               <h1 className="display-xl text-ink mb-6">
                 {greeting}, <span className="italic text-sage">{userName}</span>.
@@ -68,7 +75,7 @@ export function PatientHome() {
               <div className="relative animate-float-up" style={{ animationDelay: '0.15s' }}>
                 <div className="absolute inset-0 -m-12 rounded-full bg-orb-glow blur-2xl animate-breathe" />
                 <div className="relative">
-                  <VoiceOrb />
+                  <AgenticOrb />
                 </div>
               </div>
             </div>
