@@ -44,8 +44,10 @@ export async function uploadEntry(input: UploadInput): Promise<UploadResult> {
   }
 
   // Live Arweave path — only entered when ARWEAVE_KEY is configured.
-  // We dynamic-import so the package never enters dev bundles.
+  // We dynamic-import so the package never enters dev bundles. The ts-ignore
+  // is intentional: arweave is an optional peer that may not be installed.
   try {
+    // @ts-ignore -- optional peer dependency; only loaded when ARWEAVE_KEY is set
     const ArweaveMod = (await import('arweave')).default;
     const arweave = ArweaveMod.init({
       host: 'arweave.net',
